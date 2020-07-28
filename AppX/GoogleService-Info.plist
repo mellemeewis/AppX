@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>69593867421-4ra8ru30qqgc7ebd7o6fsbb85lp4rjsb.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.69593867421-4ra8ru30qqgc7ebd7o6fsbb85lp4rjsb</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBGFrZlrqKL3Gk1fDO9ucsDi1_dDJ0X2fY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>69593867421</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>MelleMeewis.AppX</string>
+	<key>PROJECT_ID</key>
+	<string>appx-ac8fb</string>
+	<key>STORAGE_BUCKET</key>
+	<string>appx-ac8fb.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:69593867421:ios:e80306540565ba9d1fa074</string>
+	<key>DATABASE_URL</key>
+	<string>https://appx-ac8fb.firebaseio.com</string>
+</dict>
+</plist>

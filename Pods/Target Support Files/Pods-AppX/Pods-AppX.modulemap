@@ -1,0 +1,6 @@
+framework module Pods_AppX {
+  umbrella header "Pods-AppX-umbrella.h"
+
+  export *
+  module * { export * }
+}
