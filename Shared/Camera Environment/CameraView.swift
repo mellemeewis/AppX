@@ -9,6 +9,8 @@ import Foundation
 
 struct CameraView: View {
     @ObservedObject var model = CameraViewModel()
+    @ObservedObject var storageManager = StorageManager()
+
     @State var currentZoomFactor: CGFloat = 1.0
     @State var timeRemaining = 5
 
@@ -38,19 +40,26 @@ struct CameraView: View {
         
                 Image(uiImage: model.photo.image!)
                     .resizable()
-//                    .aspectRatio(contentMode: .fill)
-//                    .frame(width: 60, height: 60)
+                    .frame(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.width)
+//                    .aspectRatio(contentMode: .fit)
+
 //                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                     .animation(.spring())
                 
                 VStack {
                     HStack {
-                        Button(action: { model.showImage = false }, label: {
+                        Button(action: {
+                            model.showImage = false
+                            timeRemaining = 5
+                        }, label: {
                             Text("Retake")
                                 .padding(.all)
                         })
                         Spacer()
-                        Button(action: { model.showImage = false }, label: {
+                        Button(action: {
+                                UIImageWriteToSavedPhotosAlbum(model.photo.image!, nil, nil, nil)
+                                storageManager.upload(image: model.photo.image!)
+                                model.showImage = false }, label: {
                             Text("Use this photo!")
                                 .padding(.all)
                         })
@@ -68,6 +77,9 @@ struct CameraView: View {
                     timeRemaining -= 1
  
                     if timeRemaining == 0 {
+                        UIImageWriteToSavedPhotosAlbum(model.photo.image!, nil, nil, nil)
+                        storageManager.upload(image: model.photo.image!)
+
                         model.showImage = false
                         timeRemaining = 5
                         timer.upstream.connect().cancel()
@@ -98,6 +110,7 @@ struct CameraView: View {
         GeometryReader { reader in
             ZStack {
                 CameraPreview(session: model.session)
+                    .frame(width: reader.size.width, height: UIScreen.main.bounds.size.width, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .ignoresSafeArea()
                         .gesture(
                             DragGesture().onChanged({ (val) in

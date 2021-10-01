@@ -25,8 +25,12 @@ public struct ImageResizer {
     }
     
     public func resize(image: UIImage) -> UIImage {
-        let originalSize = image.size
-        let targetSize = CGSize(width: targetWidth, height: targetWidth*originalSize.height/originalSize.width)
+//        let originalSize = image.size
+        
+//        let targetSizeMM = Measurement(value: 79, unit: UnitLength.millimeters).converted(to: UnitLength.)
+        print("RESIZE")
+        let targetSize = CGSize(width: targetWidth, height: targetWidth)
+
         let renderer = UIGraphicsImageRenderer(size: targetSize)
         return renderer.image { (context) in
             image.draw(in: CGRect(origin: .zero, size: targetSize))

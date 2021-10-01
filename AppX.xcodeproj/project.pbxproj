@@ -12,10 +12,15 @@
 		030454AD26EFF49E000E78F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0304548226EFF49E000E78F6 /* Assets.xcassets */; };
 		030454BE26EFF5FD000E78F6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 030454BD26EFF5FD000E78F6 /* GoogleService-Info.plist */; };
 		030454C026EFF5FD000E78F6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 030454BD26EFF5FD000E78F6 /* GoogleService-Info.plist */; };
+		038300B8270730BB00D1E08F /* TextAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038300B7270730BB00D1E08F /* TextAlert.swift */; };
+		038300BD27074F8100D1E08F /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038300BC27074F8100D1E08F /* SignInView.swift */; };
+		038300BF27074FE700D1E08F /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038300BE27074FE700D1E08F /* SignUpView.swift */; };
 		038C69C326F0C34C0051DE59 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C69C226F0C34C0051DE59 /* ContentView.swift */; };
 		038C69CE26F1F1590051DE59 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C69CD26F1F1590051DE59 /* WelcomeView.swift */; };
 		038C69D026F20D020051DE59 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C69CF26F20D020051DE59 /* AccountView.swift */; };
 		038C69E226F4B1290051DE59 /* CameraService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C69E126F4B1290051DE59 /* CameraService.swift */; };
+		03ADB50C270482B800B999B2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADB50B270482B800B999B2 /* User.swift */; };
+		03B5DD3A270200A0005C96F1 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B5DD39270200A0005C96F1 /* StorageManager.swift */; };
 		03C3F30826F4B6D300BB9994 /* PhotoCaptureProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C3F30726F4B6D300BB9994 /* PhotoCaptureProcessor.swift */; };
 		03C3F30A26F4B78700BB9994 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C3F30926F4B78700BB9994 /* CameraViewModel.swift */; };
 		03C3F30C26F4B7B500BB9994 /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C3F30B26F4B7B500BB9994 /* CameraPreview.swift */; };
@@ -44,10 +49,15 @@
 		0304549B26EFF49E000E78F6 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
 		0304549D26EFF49E000E78F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		030454BD26EFF5FD000E78F6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		038300B7270730BB00D1E08F /* TextAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAlert.swift; sourceTree = "<group>"; };
+		038300BC27074F8100D1E08F /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		038300BE27074FE700D1E08F /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		038C69C226F0C34C0051DE59 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		038C69CD26F1F1590051DE59 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		038C69CF26F20D020051DE59 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		038C69E126F4B1290051DE59 /* CameraService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraService.swift; sourceTree = "<group>"; };
+		03ADB50B270482B800B999B2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		03B5DD39270200A0005C96F1 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		03C3F30726F4B6D300BB9994 /* PhotoCaptureProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCaptureProcessor.swift; sourceTree = "<group>"; };
 		03C3F30926F4B78700BB9994 /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		03C3F30B26F4B7B500BB9994 /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
@@ -102,12 +112,13 @@
 		0304547F26EFF49C000E78F6 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				038300B9270740B500D1E08F /* Account Environment */,
+				03B5DD3827020082005C96F1 /* Firebase */,
+				03B5DD3727020043005C96F1 /* Authentication Environment */,
 				03F06E4726F4E4C400D7486A /* Structs */,
 				038C69E026F4B10C0051DE59 /* Camera Environment */,
 				0304548026EFF49C000E78F6 /* AppXApp.swift */,
 				038C69C226F0C34C0051DE59 /* ContentView.swift */,
-				038C69CF26F20D020051DE59 /* AccountView.swift */,
-				038C69CD26F1F1590051DE59 /* WelcomeView.swift */,
 				0304548226EFF49E000E78F6 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -139,6 +150,14 @@
 			path = "Tests iOS";
 			sourceTree = "<group>";
 		};
+		038300B9270740B500D1E08F /* Account Environment */ = {
+			isa = PBXGroup;
+			children = (
+				038C69CF26F20D020051DE59 /* AccountView.swift */,
+			);
+			path = "Account Environment";
+			sourceTree = "<group>";
+		};
 		038C69E026F4B10C0051DE59 /* Camera Environment */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,10 +171,30 @@
 			path = "Camera Environment";
 			sourceTree = "<group>";
 		};
+		03B5DD3727020043005C96F1 /* Authentication Environment */ = {
+			isa = PBXGroup;
+			children = (
+				038C69CD26F1F1590051DE59 /* WelcomeView.swift */,
+				038300BC27074F8100D1E08F /* SignInView.swift */,
+				038300BE27074FE700D1E08F /* SignUpView.swift */,
+			);
+			path = "Authentication Environment";
+			sourceTree = "<group>";
+		};
+		03B5DD3827020082005C96F1 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				03B5DD39270200A0005C96F1 /* StorageManager.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
 		03F06E4726F4E4C400D7486A /* Structs */ = {
 			isa = PBXGroup;
 			children = (
 				03F06E4826F4E4DF00D7486A /* AlertError.swift */,
+				03ADB50B270482B800B999B2 /* User.swift */,
+				038300B7270730BB00D1E08F /* TextAlert.swift */,
 			);
 			path = Structs;
 			sourceTree = "<group>";
@@ -317,14 +356,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03ADB50C270482B800B999B2 /* User.swift in Sources */,
 				038C69D026F20D020051DE59 /* AccountView.swift in Sources */,
 				030454A926EFF49E000E78F6 /* AppXApp.swift in Sources */,
+				038300B8270730BB00D1E08F /* TextAlert.swift in Sources */,
 				03C3F30E26F4B80B00BB9994 /* CameraView.swift in Sources */,
+				03B5DD3A270200A0005C96F1 /* StorageManager.swift in Sources */,
 				03F06E4626F4C11900D7486A /* ImageResizer.swift in Sources */,
 				03C3F30C26F4B7B500BB9994 /* CameraPreview.swift in Sources */,
 				038C69C326F0C34C0051DE59 /* ContentView.swift in Sources */,
+				038300BD27074F8100D1E08F /* SignInView.swift in Sources */,
 				038C69E226F4B1290051DE59 /* CameraService.swift in Sources */,
 				03F06E4926F4E4DF00D7486A /* AlertError.swift in Sources */,
+				038300BF27074FE700D1E08F /* SignUpView.swift in Sources */,
 				03C3F30826F4B6D300BB9994 /* PhotoCaptureProcessor.swift in Sources */,
 				038C69CE26F1F1590051DE59 /* WelcomeView.swift in Sources */,
 				03C3F30A26F4B78700BB9994 /* CameraViewModel.swift in Sources */,

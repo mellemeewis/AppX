@@ -17,15 +17,9 @@ public struct Photo: Identifiable, Equatable {
 
 extension Photo {
     public var compressedData: Data? {
-        ImageResizer(targetWidth: 800).resize(data: originalData)?.jpegData(compressionQuality: 0.5)
+        ImageResizer(targetWidth: UIScreen.main.bounds.size.width).resize(data: originalData)?.jpegData(compressionQuality: 0.5)
     }
-    public var thumbnailData: Data? {
-        ImageResizer(targetWidth: 100).resize(data: originalData)?.jpegData(compressionQuality: 0.5)
-    }
-    public var thumbnailImage: UIImage? {
-        guard let data = thumbnailData else { return nil }
-        return UIImage(data: data)
-    }
+
     public var image: UIImage? {
         guard let data = compressedData else { return nil }
         return UIImage(data: data)
@@ -39,7 +33,6 @@ public class CameraService {
     @Published public var flashMode: AVCaptureDevice.FlashMode = .off
     @Published public var shouldShowAlertView = false
     @Published public var shouldShowImageView = false
-
     @Published public var shouldShowSpinner = false
     @Published public var willCapturePhoto: Bool = false
     @Published public var isCameraButtonDisabled = true
@@ -64,6 +57,7 @@ public class CameraService {
         case notAuthorized
         case configurationFailed
     }
+    
     public func configure() {
         sessionQueue.async {
             self.configureSession()
@@ -86,7 +80,7 @@ public class CameraService {
         default:
             setupResult = .notAuthorized
             DispatchQueue.main.async {
-                self.alertError = AlertError(title: "Camera Access", message: "SwiftCamera doesn't have access to use your camera, please update your privacy settings.", primaryButtonTitle: "Settings", secondaryButtonTitle: nil, primaryAction: {
+                self.alertError = AlertError(title: "Camera Access", message: "AppX doesn't have access to use your camera, please update your privacy settings.", primaryButtonTitle: "Settings", secondaryButtonTitle: nil, primaryAction: {
                         UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!,
                                                   options: [:], completionHandler: nil)
                 }, secondaryAction: nil)
@@ -106,7 +100,6 @@ public class CameraService {
         session.sessionPreset = .photo
         
         do {
-            print(1)
             var defaultVideoDevice: AVCaptureDevice?
             
             if let backCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) {
@@ -115,7 +108,6 @@ public class CameraService {
                 defaultVideoDevice = frontCameraDevice
             }
             
-            print(2)
             guard let videoDevice = defaultVideoDevice else {
                 print("Default video device is unavailable.")
                 setupResult = .configurationFailed
@@ -123,7 +115,6 @@ public class CameraService {
                 return
             }
             
-            print(3)
             let videoDeviceInput = try AVCaptureDeviceInput(device: videoDevice)
             
             if session.inputs.count == 0 {
@@ -132,7 +123,6 @@ public class CameraService {
                     self.videoDeviceInput = videoDeviceInput
                     
                 } else {
-                    print("HERE")
                     print("Couldn't add video device input to the session.")
                     setupResult = .configurationFailed
                     session.commitConfiguration()
