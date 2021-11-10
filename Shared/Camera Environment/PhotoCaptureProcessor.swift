@@ -79,37 +79,37 @@ extension PhotoCaptureProcessor: AVCapturePhotoCaptureDelegate {
         }
     }
     
-//            MARK: Saves capture to photo library
-    func saveToPhotoLibrary(_ photoData: Data) {
-        self.completionHandler(self)
-
-        PHPhotoLibrary.requestAuthorization { status in
-            if status == .authorized {
-                PHPhotoLibrary.shared().performChanges({
-                    let options = PHAssetResourceCreationOptions()
-                    let creationRequest = PHAssetCreationRequest.forAsset()
-                    options.uniformTypeIdentifier = self.requestedPhotoSettings.processedFileType.map { $0.rawValue }
-                    
-                    creationRequest.addResource(with: .photo, data: photoData, options: options)
-
-
-                }, completionHandler: { _, error in
-                    if let error = error {
-                        print("Error occurred while saving photo to photo library: \(error)")
-                    }
-
-                    DispatchQueue.main.async {
-                        self.completionHandler(self)
-                    }
-                }
-                )
-            } else {
-                DispatchQueue.main.async {
-                    self.completionHandler(self)
-                }
-            }
-        }
-    }
+////            MARK: Saves capture to photo library
+//    func saveToPhotoLibrary(_ photoData: Data) {
+//        self.completionHandler(self)
+//
+//        PHPhotoLibrary.requestAuthorization { status in
+//            if status == .authorized {
+//                PHPhotoLibrary.shared().performChanges({
+//                    let options = PHAssetResourceCreationOptions()
+//                    let creationRequest = PHAssetCreationRequest.forAsset()
+//                    options.uniformTypeIdentifier = self.requestedPhotoSettings.processedFileType.map { $0.rawValue }
+//
+//                    creationRequest.addResource(with: .photo, data: photoData, options: options)
+//
+//
+//                }, completionHandler: { _, error in
+//                    if let error = error {
+//                        print("Error occurred while saving photo to photo library: \(error)")
+//                    }
+//
+//                    DispatchQueue.main.async {
+//                        self.completionHandler(self)
+//                    }
+//                }
+//                )
+//            } else {
+//                DispatchQueue.main.async {
+//                    self.completionHandler(self)
+//                }
+//            }
+//        }
+//    }
     
 //    / - Tag: DidFinishCapture
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishCaptureFor resolvedSettings: AVCaptureResolvedPhotoSettings, error: Error?) {

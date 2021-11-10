@@ -26,7 +26,6 @@ final class CameraViewModel: ObservableObject {
     private var subscriptions = Set<AnyCancellable>()
     
     init() {
-        print("INIT")
         self.session = service.session
         
         service.$photo.sink { [weak self] (photo) in

@@ -15,30 +15,50 @@ struct SignInView: View {
     @Binding var userSignedIn: Bool
     
     var body: some View {
-        VStack {
-            HStack {
-                Spacer()
-                Button("Cancel") { presentationMode.wrappedValue.dismiss() }
-                    .padding(.all)
-            }
-            Spacer()
+    
+        ZStack {
+            Color("BackgroundColor").ignoresSafeArea()
+                .onTapGesture {
+                        hideKeyboard()
+                }
             VStack {
-                TextField("Email", text: $email).textContentType(.emailAddress).keyboardType(.emailAddress).autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
-                SecureField("Password", text: $password).textContentType(.newPassword)
-            }.padding(.all)
-            Button(action: {
-                signIn(email: email, password: password)
-            }) {
-                Text("Sign In")
-                    .fontWeight(.bold)
-                    .font(.title)
-                    .foregroundColor(.white)
-                    .padding(.vertical)
-                    .frame(maxWidth: .infinity)
-                    .background(Color.blue)
-                    .cornerRadius(20)
+                Spacer()
+                VStack {
+                    TextField("Email", text: $email).textContentType(.emailAddress).keyboardType(.emailAddress).autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)                         .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(RoundedRectangle(cornerRadius: 10).fill(.gray).opacity(0.3))
+                    SecureField("Password", text: $password).textContentType(.newPassword)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(RoundedRectangle(cornerRadius: 10).fill(.gray).opacity(0.3))
+                }.padding(.all)
+                Spacer()
+                Button(action: {
+                    signIn(email: email, password: password)
+                }) {
+                    Text("Sign In")
+                        .fontWeight(.bold)
+                        .font(.title)
+                        .foregroundColor(.white)
+                        .padding(.vertical)
+                        .frame(maxWidth: .infinity)
+                        .background(Color("ButtonColor"))
+                        .cornerRadius(20)
+                }
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    Text("Cancel")
+                        .fontWeight(.bold)
+                        .font(.title)
+                        .foregroundColor(.white)
+                        .padding(.vertical)
+                        .frame(maxWidth: .infinity)
+                        .background(Color("ButtonColor"))
+                        .cornerRadius(20)
+                }
             }
-            Spacer()
+            .padding()
         }
     }
     

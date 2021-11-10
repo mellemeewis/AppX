@@ -10,17 +10,24 @@ import Firebase
 
 
 class StorageManager: ObservableObject {
-    let storage = Storage.storage()
-    
-    func upload(image: UIImage) {
+    let storageRef = Storage.storage().reference()
+    let formatter = DateFormatter()
+
+    func upload(image: UIImage, inPhotoRoll photoRollNr: Int) {
+        formatter.timeZone = TimeZone(identifier: "CET")
+        formatter.dateFormat = "dd-MM-yyyy-HH:mm:ss"
+
         guard let currentUserID = Auth.auth().currentUser?.uid else {
             print("Failed to retrieve current user ID")
             return
 
         }
-       
-        let storageRef = storage.reference().child("images/\(currentUserID)/image.jpg")
-
+        
+        
+        let storageRef = storageRef.child(currentUserID)
+        let dateString = formatter.string(from: Date())
+        let imageRef = storageRef.child("photoRoll\(photoRollNr)/\(dateString)")
+        
         // Convert the image into JPEG and compress the quality to reduce its size
         let data = image.jpegData(compressionQuality: 1)
         
@@ -28,7 +35,7 @@ class StorageManager: ObservableObject {
         metadata.contentType = "image/jpg"
         
         if let data = data {
-                storageRef.putData(data, metadata: metadata) { (metadata, error) in
+            imageRef.putData(data, metadata: metadata) { (metadata, error) in
                         if let error = error {
                                 print("Error while uploading file: ", error)
                         }
@@ -39,4 +46,5 @@ class StorageManager: ObservableObject {
                 }
         }
     }
+
 }

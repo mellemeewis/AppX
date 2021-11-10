@@ -9,6 +9,7 @@ import SwiftUI
 import Firebase
 
 struct AccountView: View {
+    @ObservedObject var paymentService: PaymentService
     @ObservedObject var currentUser: User
     @Binding var userSignedIn: Bool
     @State var showNameAlert = false
@@ -21,17 +22,19 @@ struct AccountView: View {
                 Form {
                     Section(header: Text("Contact details")) {
                         Button(action: { self.showNameAlert = true}) {
-                            Text("Name")
-                                .foregroundColor(Color.black)
-                                .bold()
-                            Spacer()
-                            Text(currentUser.firstName)
-                                .foregroundColor(Color.gray)
-                            Text(currentUser.lastName)
-                                .foregroundColor(Color.gray)
+                            HStack {
+                                Text("Name")
+                                    .foregroundColor(Color.black)
+                                    .bold()
+                                Spacer()
+                                Text("\(currentUser.firstName) \(currentUser.lastName)")
+                                    .foregroundColor(Color.gray)
+                                Image(systemName: "pencil")
+                            }
+  
                         }
                         .alert(isPresented: $showNameAlert,
-                            TextAlert(title: "Name", message: "Enter your name", keyboardType: .default) { firstField, secondField in
+                               TextAlert(title: "Name", message: "Enter your name", placeholder1: currentUser.firstName, placeholder2: currentUser.lastName, keyboardType: .default) { firstField, secondField in
                                 if let firstName = firstField, let lastName = secondField {
                                     currentUser.updateName(firstName: firstName, lastName: lastName)
                                         print(firstName, lastName)
@@ -40,15 +43,18 @@ struct AccountView: View {
                         )
                         
                         Button(action: { self.showEmailAlert = true}) {
-                            Text("Email")
-                                .foregroundColor(Color.black)
-                                .bold()
-                            Spacer()
-                            Text(currentUser.email)
-                                .foregroundColor(Color.gray)
+                            HStack {
+                                Text("Email")
+                                    .foregroundColor(Color.black)
+                                    .bold()
+                                Spacer()
+                                Text(currentUser.email)
+                                    .foregroundColor(Color.gray)
+                                Image(systemName: "pencil")
+                            }
                         }
                         .alert(isPresented: $showEmailAlert,
-                            TextAlert(title: "Email", message: "Enter your email", keyboardType: .emailAddress) { firstField, secondField in
+                            TextAlert(title: "Email", message: "Enter your email", placeholder1: currentUser.email, keyboardType: .emailAddress) { firstField, secondField in
                                 if let email = firstField {
                                     currentUser.updateEmail(email: email)
                                         print(email)
@@ -56,7 +62,7 @@ struct AccountView: View {
                             }
                         )
                         
-                        NavigationLink(destination: Text("Adress")) {
+                        NavigationLink(destination: AddressViewAccountEnvironment(currentUser: self.currentUser)) {
                             HStack {
                                 Text("Adress")
                                     .foregroundColor(Color.black)
@@ -65,12 +71,12 @@ struct AccountView: View {
                                 VStack {
                                     HStack {
                                         Spacer()
-                                        Text("\(currentUser.street) \(currentUser.houseNumber)")
+                                        Text("\(currentUser.address) \(currentUser.addition)")
                                             .foregroundColor(Color.gray)
                                     }
                                     HStack {
                                         Spacer()
-                                        Text("\(currentUser.ZIP) \(currentUser.city)")
+                                        Text("\(currentUser.postalCode) \(currentUser.city)")
                                             .foregroundColor(Color.gray)
                                     }
                                 }
@@ -78,35 +84,57 @@ struct AccountView: View {
                         }
                     }
                     
-                    Section(header: Text("Payment details"))  {
-                        Text("GEEN IDEE")
+                    Section(header: Text("Financial information"))  {
+                        NavigationLink(destination: PaymentMethodView(currentUser: self.currentUser, paymentService: self.paymentService)) {
+                            HStack {
+                                Text("Payment Method")
+                                    .foregroundColor(Color.black)
+                                    .bold()
+                                Spacer()
+                            }
+                        }
+                        NavigationLink(destination: OrdersView(currentUser: self.currentUser, paymentService: self.paymentService)) {
+                            HStack {
+                                Text("Orders")
+                                    .foregroundColor(Color.black)
+                                    .bold()
+                                Spacer()
+                            }
+                        }
                     }
+                    
+                        
 
         
-        
-        Button(action: { SignOut() }) {
-            Text("Sign Out")
-                .fontWeight(.bold)
-                .font(.title)
-                .foregroundColor(.white)
-                .padding(.vertical)
-                .frame(maxWidth: .infinity)
-                .background(Color.blue)
-                .cornerRadius(20)
-        }.padding()
+                    Section(header: Text("Sign Out"))  {
+
+                    Button(action: { SignOut() }) {
+                        Text("Sign Out")
+                            .fontWeight(.bold)
+                        .font(.title)
+                        .foregroundColor(.white)
+                        .padding(.vertical)
+                        .frame(maxWidth: .infinity)
+                        .background(Color("ButtonColor"))
+                        .cornerRadius(20)
+                    }.padding()
+                    }
+                }
             }
-            }
-    }
+        }
     }
     
     func SignOut() {
         do {
             try Auth.auth().signOut()
+            self.paymentService.resetInformation()
             userSignedIn = false
         } catch let signOutError as NSError {
           print("Error signing out: %@", signOutError)
         }
     }
+    
+    
 }
 
 struct nameView: View {

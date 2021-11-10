@@ -12,47 +12,59 @@ struct WelcomeView: View {
     @State private var showSignInSheet = false
     @State private var showSignUpSheet = false
     @Binding var userSignedIn: Bool
-    
+    @ObservedObject var currentUser: User
+    @ObservedObject var paymentService: PaymentService
+
     var body: some View {
-        VStack {
-            Spacer()
-            Text("Welcome to AppX. Sign in or sign up.")
-            Spacer()
+        ZStack {
+            Color("BackgroundColor").ignoresSafeArea()
             VStack {
-                Button(action: { showSignInSheet.toggle() }) {
-                    Text("Sign In")
-                        .fontWeight(.bold)
-                        .font(.title)
-                        .foregroundColor(.white)
-                        .padding(.vertical)
-                        .frame(maxWidth: .infinity)
-                        .background(Color.blue)
-                        .cornerRadius(20)
-                    
-                        
+
+            Image("LaunchScreenImage")
+                .resizable()
+                .scaledToFit()
+        
+//                Spacer()
+                VStack {
+                    Button(action: { showSignInSheet.toggle() }) {
+                        Text("Sign In")
+                            .fontWeight(.bold)
+                            .font(.title)
+                            .foregroundColor(.white)
+                            .padding(.vertical)
+                            .frame(maxWidth: .infinity)
+                            .background(Color("ButtonColor"))
+                            .cornerRadius(10)
+                    }
+                    Button(action: { showSignUpSheet.toggle() }) {
+                        Text("Sign Up")
+                            .fontWeight(.bold)
+                            .font(.title)
+                            .foregroundColor(.white)
+                            .padding(.vertical)
+                            .frame(maxWidth: .infinity)
+                            .background(Color("ButtonColor"))
+                            .cornerRadius(10)
+                    }
                 }
-                Button(action: { showSignUpSheet.toggle() }) {
-                    Text("Sign Up")
-                        .fontWeight(.bold)
-                        .font(.title)
-                        .foregroundColor(.white)
-                        .padding(.vertical)
-                        .frame(maxWidth: .infinity)
-                        .background(Color.blue)
-                        .cornerRadius(20)
-                }
+                .padding(.all)
             }
-            .padding(.all)
         }
         .sheet(isPresented: $showSignInSheet) {
             SignInView(userSignedIn: $userSignedIn)
         }
         .sheet(isPresented: $showSignUpSheet) {
-            SignUpView(userSignedIn: $userSignedIn)
+            SignUpView(currentUser: self.currentUser, paymentService: self.paymentService, userSignedIn: $userSignedIn)
+//            SignUpView(currentUser: self.currentUser)
         }
     }
 }
 
+//struct WelcomeView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        WelcomeView(userSignedIn: .constant(false), currentUser: User(), paymentService: self.paymentService)
+//    }
+//}
 
 
 

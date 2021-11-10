@@ -294,7 +294,9 @@ public class CameraService {
             
             sessionQueue.async {
                 if let photoOutputConnection = self.photoOutput.connection(with: .video) {
-                    photoOutputConnection.videoOrientation = .portrait
+//                    photoOutputConnection.videoOrientation = .landscapeLeft
+                    photoOutputConnection.videoOrientation = .landscapeRight
+
                 }
                 var photoSettings = AVCapturePhotoSettings()
                 

@@ -26,14 +26,16 @@ extension UIAlertController {
   convenience init(alert: TextAlert) {
     self.init(title: alert.title, message: alert.message, preferredStyle: .alert)
     addTextField {
-       $0.placeholder = alert.placeholder1
-       $0.keyboardType = alert.keyboardType
+        $0.placeholder = alert.placeholder1
+        $0.keyboardType = alert.keyboardType
+        $0.autocapitalizationType =  alert.keyboardType == .emailAddress ? .none : .words
     }
       
     if alert.placeholder2 != nil {
       addTextField {
           $0.placeholder = alert.placeholder2
           $0.keyboardType = alert.keyboardType
+          $0.autocapitalizationType = .words
       }
     }
       

@@ -3,28 +3,41 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0304549C26EFF49E000E78F6 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0304549B26EFF49E000E78F6 /* Tests_iOS.swift */; };
 		030454A926EFF49E000E78F6 /* AppXApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0304548026EFF49C000E78F6 /* AppXApp.swift */; };
-		030454AD26EFF49E000E78F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0304548226EFF49E000E78F6 /* Assets.xcassets */; };
 		030454BE26EFF5FD000E78F6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 030454BD26EFF5FD000E78F6 /* GoogleService-Info.plist */; };
 		030454C026EFF5FD000E78F6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 030454BD26EFF5FD000E78F6 /* GoogleService-Info.plist */; };
+		03174DC527340BB000ABA99C /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03174DC427340BB000ABA99C /* View.swift */; };
+		03174DC72737EB9200ABA99C /* PaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03174DC62737EB9200ABA99C /* PaymentService.swift */; };
+		03560CB227319F9B00305527 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03560CB127319F9B00305527 /* UIColor.swift */; };
+		035AB86D2731514F00A40045 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 035AB86C2731514F00A40045 /* Assets.xcassets */; };
+		035AB8712731532F00A40045 /* LaunchScreenImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 035AB8702731532F00A40045 /* LaunchScreenImage.png */; };
+		035EDBD62710864B000C4DFC /* CameraRollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035EDBD52710864B000C4DFC /* CameraRollView.swift */; };
+		03675D122727186400E0257C /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 03675D112727186400E0257C /* URLImage */; };
+		03675D142727186400E0257C /* URLImageStore in Frameworks */ = {isa = PBXBuildFile; productRef = 03675D132727186400E0257C /* URLImageStore */; };
 		038300B8270730BB00D1E08F /* TextAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038300B7270730BB00D1E08F /* TextAlert.swift */; };
 		038300BD27074F8100D1E08F /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038300BC27074F8100D1E08F /* SignInView.swift */; };
 		038300BF27074FE700D1E08F /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038300BE27074FE700D1E08F /* SignUpView.swift */; };
+		038300C1270C6CCF00D1E08F /* AddressViewAccountEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038300C0270C6CCF00D1E08F /* AddressViewAccountEnvironment.swift */; };
+		038300C4270C77A500D1E08F /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038300C3270C77A500D1E08F /* LocationService.swift */; };
+		038300C9270DF73700D1E08F /* AddressViewAuthenticationEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038300C8270DF73700D1E08F /* AddressViewAuthenticationEnvironment.swift */; };
 		038C69C326F0C34C0051DE59 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C69C226F0C34C0051DE59 /* ContentView.swift */; };
 		038C69CE26F1F1590051DE59 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C69CD26F1F1590051DE59 /* WelcomeView.swift */; };
 		038C69D026F20D020051DE59 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C69CF26F20D020051DE59 /* AccountView.swift */; };
 		038C69E226F4B1290051DE59 /* CameraService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C69E126F4B1290051DE59 /* CameraService.swift */; };
 		03ADB50C270482B800B999B2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADB50B270482B800B999B2 /* User.swift */; };
 		03B5DD3A270200A0005C96F1 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B5DD39270200A0005C96F1 /* StorageManager.swift */; };
+		03BA61502739CD75006B2781 /* PaymentMethodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BA614F2739CD75006B2781 /* PaymentMethodView.swift */; };
+		03BA6152273BD631006B2781 /* OrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BA6151273BD631006B2781 /* OrdersView.swift */; };
 		03C3F30826F4B6D300BB9994 /* PhotoCaptureProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C3F30726F4B6D300BB9994 /* PhotoCaptureProcessor.swift */; };
 		03C3F30A26F4B78700BB9994 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C3F30926F4B78700BB9994 /* CameraViewModel.swift */; };
 		03C3F30C26F4B7B500BB9994 /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C3F30B26F4B7B500BB9994 /* CameraPreview.swift */; };
 		03C3F30E26F4B80B00BB9994 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C3F30D26F4B80B00BB9994 /* CameraView.swift */; };
+		03C8D849272858F30075EF41 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C8D848272858F30075EF41 /* CardView.swift */; };
 		03F06E4626F4C11900D7486A /* ImageResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F06E4526F4C11900D7486A /* ImageResizer.swift */; };
 		03F06E4926F4E4DF00D7486A /* AlertError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F06E4826F4E4DF00D7486A /* AlertError.swift */; };
 		E62D03F5168AE0C00EDEAF94 /* Pods_AppX__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA4A4D16A6D5F250165FF60C /* Pods_AppX__iOS_.framework */; };
@@ -42,26 +55,37 @@
 
 /* Begin PBXFileReference section */
 		0304548026EFF49C000E78F6 /* AppXApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppXApp.swift; sourceTree = "<group>"; };
-		0304548226EFF49E000E78F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0304548726EFF49E000E78F6 /* AppX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0304548A26EFF49E000E78F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0304549726EFF49E000E78F6 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0304549B26EFF49E000E78F6 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
 		0304549D26EFF49E000E78F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		030454BD26EFF5FD000E78F6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		03174DC427340BB000ABA99C /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		03174DC62737EB9200ABA99C /* PaymentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentService.swift; sourceTree = "<group>"; };
+		03560CB127319F9B00305527 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		035AB86C2731514F00A40045 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		035AB8702731532F00A40045 /* LaunchScreenImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LaunchScreenImage.png; path = ../../../../../Downloads/LaunchScreenImage.png; sourceTree = "<group>"; };
+		035EDBD52710864B000C4DFC /* CameraRollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraRollView.swift; sourceTree = "<group>"; };
 		038300B7270730BB00D1E08F /* TextAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAlert.swift; sourceTree = "<group>"; };
 		038300BC27074F8100D1E08F /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		038300BE27074FE700D1E08F /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		038300C0270C6CCF00D1E08F /* AddressViewAccountEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressViewAccountEnvironment.swift; sourceTree = "<group>"; };
+		038300C3270C77A500D1E08F /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		038300C8270DF73700D1E08F /* AddressViewAuthenticationEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressViewAuthenticationEnvironment.swift; sourceTree = "<group>"; };
 		038C69C226F0C34C0051DE59 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		038C69CD26F1F1590051DE59 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		038C69CF26F20D020051DE59 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		038C69E126F4B1290051DE59 /* CameraService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraService.swift; sourceTree = "<group>"; };
 		03ADB50B270482B800B999B2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		03B5DD39270200A0005C96F1 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		03BA614F2739CD75006B2781 /* PaymentMethodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodView.swift; sourceTree = "<group>"; };
+		03BA6151273BD631006B2781 /* OrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersView.swift; sourceTree = "<group>"; };
 		03C3F30726F4B6D300BB9994 /* PhotoCaptureProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCaptureProcessor.swift; sourceTree = "<group>"; };
 		03C3F30926F4B78700BB9994 /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		03C3F30B26F4B7B500BB9994 /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
 		03C3F30D26F4B80B00BB9994 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		03C8D848272858F30075EF41 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		03F06E4526F4C11900D7486A /* ImageResizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResizer.swift; sourceTree = "<group>"; };
 		03F06E4826F4E4DF00D7486A /* AlertError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertError.swift; sourceTree = "<group>"; };
 		86F4ACD061BBC2376DB18DDA /* Pods-AppX (iOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppX (iOS).debug.xcconfig"; path = "Target Support Files/Pods-AppX (iOS)/Pods-AppX (iOS).debug.xcconfig"; sourceTree = "<group>"; };
@@ -74,6 +98,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03675D122727186400E0257C /* URLImage in Frameworks */,
+				03675D142727186400E0257C /* URLImageStore in Frameworks */,
 				E62D03F5168AE0C00EDEAF94 /* Pods_AppX__iOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -112,14 +138,17 @@
 		0304547F26EFF49C000E78F6 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				038300C5270DBF9300D1E08F /* Extensions */,
+				038300C2270C778100D1E08F /* Classes */,
 				038300B9270740B500D1E08F /* Account Environment */,
-				03B5DD3827020082005C96F1 /* Firebase */,
 				03B5DD3727020043005C96F1 /* Authentication Environment */,
 				03F06E4726F4E4C400D7486A /* Structs */,
 				038C69E026F4B10C0051DE59 /* Camera Environment */,
 				0304548026EFF49C000E78F6 /* AppXApp.swift */,
 				038C69C226F0C34C0051DE59 /* ContentView.swift */,
-				0304548226EFF49E000E78F6 /* Assets.xcassets */,
+				035EDBD52710864B000C4DFC /* CameraRollView.swift */,
+				035AB8702731532F00A40045 /* LaunchScreenImage.png */,
+				035AB86C2731514F00A40045 /* Assets.xcassets */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -154,8 +183,31 @@
 			isa = PBXGroup;
 			children = (
 				038C69CF26F20D020051DE59 /* AccountView.swift */,
+				038300C0270C6CCF00D1E08F /* AddressViewAccountEnvironment.swift */,
+				03BA614F2739CD75006B2781 /* PaymentMethodView.swift */,
+				03BA6151273BD631006B2781 /* OrdersView.swift */,
 			);
 			path = "Account Environment";
+			sourceTree = "<group>";
+		};
+		038300C2270C778100D1E08F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				03B5DD39270200A0005C96F1 /* StorageManager.swift */,
+				03ADB50B270482B800B999B2 /* User.swift */,
+				038300C3270C77A500D1E08F /* LocationService.swift */,
+				03174DC62737EB9200ABA99C /* PaymentService.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		038300C5270DBF9300D1E08F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				03560CB127319F9B00305527 /* UIColor.swift */,
+				03174DC427340BB000ABA99C /* View.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		038C69E026F4B10C0051DE59 /* Camera Environment */ = {
@@ -166,6 +218,7 @@
 				03C3F30926F4B78700BB9994 /* CameraViewModel.swift */,
 				03C3F30B26F4B7B500BB9994 /* CameraPreview.swift */,
 				03C3F30D26F4B80B00BB9994 /* CameraView.swift */,
+				03C8D848272858F30075EF41 /* CardView.swift */,
 				03F06E4526F4C11900D7486A /* ImageResizer.swift */,
 			);
 			path = "Camera Environment";
@@ -177,23 +230,15 @@
 				038C69CD26F1F1590051DE59 /* WelcomeView.swift */,
 				038300BC27074F8100D1E08F /* SignInView.swift */,
 				038300BE27074FE700D1E08F /* SignUpView.swift */,
+				038300C8270DF73700D1E08F /* AddressViewAuthenticationEnvironment.swift */,
 			);
 			path = "Authentication Environment";
-			sourceTree = "<group>";
-		};
-		03B5DD3827020082005C96F1 /* Firebase */ = {
-			isa = PBXGroup;
-			children = (
-				03B5DD39270200A0005C96F1 /* StorageManager.swift */,
-			);
-			path = Firebase;
 			sourceTree = "<group>";
 		};
 		03F06E4726F4E4C400D7486A /* Structs */ = {
 			isa = PBXGroup;
 			children = (
 				03F06E4826F4E4DF00D7486A /* AlertError.swift */,
-				03ADB50B270482B800B999B2 /* User.swift */,
 				038300B7270730BB00D1E08F /* TextAlert.swift */,
 			);
 			path = Structs;
@@ -227,6 +272,8 @@
 			);
 			name = "AppX (iOS)";
 			packageProductDependencies = (
+				03675D112727186400E0257C /* URLImage */,
+				03675D132727186400E0257C /* URLImageStore */,
 			);
 			productName = "AppX (iOS)";
 			productReference = 0304548726EFF49E000E78F6 /* AppX.app */;
@@ -278,6 +325,7 @@
 			);
 			mainGroup = 0304547A26EFF49B000E78F6;
 			packageReferences = (
+				03675D102727186400E0257C /* XCRemoteSwiftPackageReference "url-image" */,
 			);
 			productRefGroup = 0304548826EFF49E000E78F6 /* Products */;
 			projectDirPath = "";
@@ -294,8 +342,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				030454AD26EFF49E000E78F6 /* Assets.xcassets in Resources */,
+				035AB86D2731514F00A40045 /* Assets.xcassets in Resources */,
 				030454BE26EFF5FD000E78F6 /* GoogleService-Info.plist in Resources */,
+				035AB8712731532F00A40045 /* LaunchScreenImage.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,17 +409,27 @@
 				038C69D026F20D020051DE59 /* AccountView.swift in Sources */,
 				030454A926EFF49E000E78F6 /* AppXApp.swift in Sources */,
 				038300B8270730BB00D1E08F /* TextAlert.swift in Sources */,
+				03174DC72737EB9200ABA99C /* PaymentService.swift in Sources */,
 				03C3F30E26F4B80B00BB9994 /* CameraView.swift in Sources */,
 				03B5DD3A270200A0005C96F1 /* StorageManager.swift in Sources */,
+				03BA6152273BD631006B2781 /* OrdersView.swift in Sources */,
+				038300C9270DF73700D1E08F /* AddressViewAuthenticationEnvironment.swift in Sources */,
 				03F06E4626F4C11900D7486A /* ImageResizer.swift in Sources */,
 				03C3F30C26F4B7B500BB9994 /* CameraPreview.swift in Sources */,
+				035EDBD62710864B000C4DFC /* CameraRollView.swift in Sources */,
+				03BA61502739CD75006B2781 /* PaymentMethodView.swift in Sources */,
 				038C69C326F0C34C0051DE59 /* ContentView.swift in Sources */,
+				03560CB227319F9B00305527 /* UIColor.swift in Sources */,
 				038300BD27074F8100D1E08F /* SignInView.swift in Sources */,
 				038C69E226F4B1290051DE59 /* CameraService.swift in Sources */,
 				03F06E4926F4E4DF00D7486A /* AlertError.swift in Sources */,
 				038300BF27074FE700D1E08F /* SignUpView.swift in Sources */,
 				03C3F30826F4B6D300BB9994 /* PhotoCaptureProcessor.swift in Sources */,
+				03C8D849272858F30075EF41 /* CardView.swift in Sources */,
+				038300C1270C6CCF00D1E08F /* AddressViewAccountEnvironment.swift in Sources */,
 				038C69CE26F1F1590051DE59 /* WelcomeView.swift in Sources */,
+				03174DC527340BB000ABA99C /* View.swift in Sources */,
+				038300C4270C77A500D1E08F /* LocationService.swift in Sources */,
 				03C3F30A26F4B78700BB9994 /* CameraViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -630,6 +689,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		03675D102727186400E0257C /* XCRemoteSwiftPackageReference "url-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dmytro-anokhin/url-image";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		03675D112727186400E0257C /* URLImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03675D102727186400E0257C /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImage;
+		};
+		03675D132727186400E0257C /* URLImageStore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03675D102727186400E0257C /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImageStore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0304547B26EFF49B000E78F6 /* Project object */;
 }
