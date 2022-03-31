@@ -14,34 +14,44 @@ enum ImageResizingError: Error {
 }
 
 public struct ImageResizer {
-    var targetWidth: CGFloat
     
-    public func resize(at url: URL) -> UIImage? {
-        guard let image = UIImage(contentsOfFile: url.path) else {
-            return nil
-        }
-        
-        return self.resize(image: image)
-    }
-    
-    public func resize(image: UIImage) -> UIImage {
-        let originalSize = image.size
-        
-//        let targetSizeMM = Measurement(value: 79, unit: UnitLength.millimeters).converted(to: UnitLength.)
-        print("RESIZE")
-        print(originalSize)
-        print(targetWidth)
-        let targetSize = CGSize(width: (originalSize.height/10)*1.55, height: (originalSize.height/10)*1)
+    public func resize(image: UIImage, orientation: UIDeviceOrientation, isFrontCamera: Bool) -> UIImage {
+        let width = image.size.width
+        let height = orientation.rawValue == 3 ? image.size.width * 1.1111 : image.size.width * 0.9
 
-        let renderer = UIGraphicsImageRenderer(size: targetSize)
-        return renderer.image { (context) in
-            image.draw(in: CGRect(origin: .zero, size: targetSize))
+        let xOffset =  orientation.rawValue == 3 ?  UIScreen.main.bounds.width : UIScreen.main.bounds.width * 1.7333
+        print(xOffset)
+        // IN PORTRait X OFSET DECIDES HEIGHT, Y OFFSET WIDTH
+        let yOffset = 0.0
+        
+        let cropRect = CGRect(x: xOffset, y: yOffset, width: height, height: width).integral
+        var croppedCIImage: CIImage
+        if isFrontCamera && orientation.rawValue == 3 {
+            croppedCIImage = CIImage(cgImage: image.cgImage!).cropped(to: cropRect).oriented(.left).applyingFilter("CIPhotoEffectTransfer")
+        } else {
+            croppedCIImage = CIImage(cgImage: image.cgImage!).cropped(to: cropRect).oriented(.right).applyingFilter("CIPhotoEffectTransfer")
         }
+        
+        
+        let uiImage = UIImage(ciImage: croppedCIImage)
+        return uiImage
+//        let targetSize = CGSize(width: (uiImage.size.width/2), height: (uiImage.size.height/2))
+//        let renderer = UIGraphicsImageRenderer(size: targetSize)
+//        let returnImage = renderer.image { (context) in
+//            image.draw(in: CGRect(origin: .zero, size: targetSize))
+//        }
+         
+//        let ciImage = CIImage(cgImage: returnImage.cgImage!)
+//        return UIImage(ciImage: ciImage)
+        
+
+//        return uiImage
+
     }
     
-    public func resize(data: Data) -> UIImage? {
+    public func resize(data: Data, orientation: UIDeviceOrientation, isFrontCamera: Bool) -> UIImage? {
         guard let image = UIImage(data: data) else {return nil}
-        return resize(image: image )
+        return resize(image: image, orientation: orientation, isFrontCamera: isFrontCamera)
     }
 }
 

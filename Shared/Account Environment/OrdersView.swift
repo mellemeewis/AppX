@@ -25,22 +25,22 @@ struct OrdersView: View {
                         Spacer()
                         Spacer()
                         if order.status == "created"  {
-                            Text("€ \(order.amount)\nPending")
+                            Text("€ \(order.amountAfterDiscount)\nPending")
                                 .bold()
                                 .foregroundColor(.orange)
                                 .multilineTextAlignment(.leading)
                         } else if order.status == "paid" || order.status == "shipping" || order.status == "completed" {
-                            Text("€ \(order.amount)\nPaid")
+                            Text("€ \(order.amountAfterDiscount)\nPaid")
                                 .bold()
                                 .foregroundColor(.green)
                                 .multilineTextAlignment(.leading)
                         } else if order.status == "authorized" {
-                            Text("€ \(order.amount)\nAuthorized")
+                            Text("€ \(order.amountAfterDiscount)\nAuthorized")
                                 .bold()
                                 .foregroundColor(.green)
                                 .multilineTextAlignment(.leading)
                         } else {
-                            Text("€ \(order.amount)\nCanceled")
+                            Text("€ \(order.amountAfterDiscount)\nCanceled")
                                 .bold()
                                 .foregroundColor(.red)
                                 .multilineTextAlignment(.leading)

@@ -21,44 +21,54 @@ class LocationService: NSObject, ObservableObject {
 
     @Published var queryFragment: String = ""
     @Published private(set) var status: LocationStatus = .idle
-    @Published private(set) var searchResults: [MKLocalSearchCompletion] = []
+//    @Published private(set) var searchResults: [MKLocalSearchCompletion] = []
     @Published var addresItem: MKMapItem?
 
-    private var queryCancellable: AnyCancellable?
-    private let searchCompleter: MKLocalSearchCompleter!
+//    private var queryCancellable: AnyCancellable?
+//    private let searchCompleter: MKLocalSearchCompleter!
 
-    init(searchCompleter: MKLocalSearchCompleter = MKLocalSearchCompleter()) {
-        self.searchCompleter = searchCompleter
-        super.init()
-        self.searchCompleter.delegate = self
-        self.searchCompleter.resultTypes = .address
-
-        queryCancellable = $queryFragment
-            .receive(on: DispatchQueue.main)
-            // we're debouncing the search, because the search completer is rate limited.
-            // feel free to play with the proper value here
-            .debounce(for: .milliseconds(250), scheduler: RunLoop.main, options: nil)
-            .sink(receiveValue: { fragment in
-                self.status = .isSearching
-                if !fragment.isEmpty {
-                    self.searchCompleter.queryFragment = fragment
-                } else {
-                    self.status = .idle
-                    self.searchResults = []
-                }
-        })
-    }
+//    init(searchCompleter: MKLocalSearchCompleter = MKLocalSearchCompleter()) {
+//        self.searchCompleter = searchCompleter
+//        super.init()
+//        self.searchCompleter.delegate = self
+//        self.searchCompleter.resultTypes = .address
+//
+//        queryCancellable = $queryFragment
+//            .receive(on: DispatchQueue.main)
+//            // we're debouncing the search, because the search completer is rate limited.
+//            // feel free to play with the proper value here
+//            .debounce(for: .milliseconds(250), scheduler: RunLoop.main, options: nil)
+//            .sink(receiveValue: { fragment in
+//                self.status = .isSearching
+//                if !fragment.isEmpty {
+//                    self.searchCompleter.queryFragment = fragment
+//                } else {
+//                    self.status = .idle
+//                    self.searchResults = []
+//                }
+//        })
+//    }
     
-    func performMKLocalSearch(completionResult: MKLocalSearchCompletion, completion: @escaping (Bool) -> Void) {
-        let request = MKLocalSearch.Request(completion: completionResult)
-        let search = MKLocalSearch(request: request)
+    func performMKLocalSearch(query: String, completion: @escaping (Bool) -> Void) {
+//        let request = MKLocalSearch.Request(completion: completionResult)
+//        let search = MKLocalSearch(request: request)
+//
+
+        let searchRequest = MKLocalSearch.Request()
+        searchRequest.naturalLanguageQuery = query
+        searchRequest.resultTypes = .address
+        let search = MKLocalSearch(request: searchRequest)
+        
         search.start { [unowned self] (response, error) in
                 guard error == nil else {
                     print("ERROR")
+                    print(error)
+                    completion(false)
                     return
                 }
             
             self.addresItem = response?.mapItems.first
+            print(self.addresItem)
             if self.addresItem != nil {
                 completion(true)
             }
@@ -68,10 +78,6 @@ class LocationService: NSObject, ObservableObject {
         }
     }
     
-    func resetSearchResults() {
-        self.searchResults = []
-        self.queryFragment = ""
-    }
 }
 
 extension LocationService: MKLocalSearchCompleterDelegate {
@@ -79,8 +85,8 @@ extension LocationService: MKLocalSearchCompleterDelegate {
         // Depending on what you're searching, you might need to filter differently or
         // remove the filter altogether. Filtering for an empty Subtitle seems to filter
         // out a lot of places and only shows cities and countries.
-        self.searchResults = completer.results//.filter({ $0.subtitle == "" })
-        self.status = completer.results.isEmpty ? .noResults : .result
+//        self.searchResults = completer.results//.filter({ $0.subtitle == "" })
+//        self.status = completer.results.isEmpty ? .noResults : .result
     }
 
     func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {

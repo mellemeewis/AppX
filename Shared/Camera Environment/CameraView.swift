@@ -16,45 +16,26 @@ struct CameraView: View {
     @State var currentZoomFactor: CGFloat = 1.0
     @State var timeRemaining = 5
     @State var pictureHidden = true
+    @State private var orientation: UIDeviceOrientation = .portrait
+    @State private var isFrontCamera: Bool = false
+    @State private var showConfirmation: Bool = false
+    @State private var rotateConfirmationCheckmark: Int = 30
+    @State private var showConfirmationCheckmark: Int = -240
 
-    var promtionBanner: some View {
-
-        ZStack {
-            Spacer()
-            URLImage(URL(string: currentUser.promotionURL)!) { image in
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .padding()
-            }
-        }
-    }
+    @State private var showDeleteConfirmation: Bool = false
     
     var polaroidFrame: some View {
-        
         GeometryReader { reader in
 
         Image("PolaroidFrame")
             .resizable()
-            .gesture(
-                DragGesture().onChanged({ (val) in
-                    if abs(val.translation.width) > abs(val.translation.height) {
-                        let percentage: CGFloat = (val.translation.width / reader.size.width)
-                        let calc = currentZoomFactor + percentage
-                        let zoomFactor: CGFloat = min(max(calc, 1), 5)
-                        currentZoomFactor = zoomFactor
-                        model.zoom(with: zoomFactor)
-                    }
-                })
-            )
         }
-//            .aspectRatio(contentMode: .fit)
     }
     
 
     var captureButton: some View {
         Button(action: {
-            model.capturePhoto()
+            model.capturePhoto(orientation: self.orientation, isFrontCamera: self.isFrontCamera)
         }, label: {
             
             ZStack {
@@ -150,6 +131,7 @@ struct CameraView: View {
     var flipCameraButton: some View {
         Button(action: {
             model.flipCamera()
+            self.isFrontCamera.toggle()
         }, label: {
             Circle()
                 .foregroundColor(Color.gray.opacity(0.2))
@@ -166,21 +148,38 @@ struct CameraView: View {
             .onAppear(perform: {
                 model.configure()
             })
-
-            .overlay(
-                ZStack {
-                    if model.service.willCapturePhoto {
-                        Color.black
-                    }
-                }
-            )
     }
     
     var body: some View {
         ZStack {
+            Color(.black).ignoresSafeArea(edges: .top)
 
-            cameraPreview
-                .ignoresSafeArea(edges: model.showImage ? .horizontal : .top)
+            GeometryReader { reader in
+                cameraPreview
+                    .frame(
+                        width: UIScreen.main.bounds.width,
+                        height: self.orientation == .landscapeLeft ? UIScreen.main.bounds.width * 1.111 : UIScreen.main.bounds.width * 0.9,
+                        alignment: .center)
+                    .animation(.linear(duration: 1))
+                    .position(x:UIScreen.main.bounds.width/2, y:UIScreen.main.bounds.height/2.5)
+//                    .rotationEffect(.degrees(self.orientation == .landscapeLeft ? 90 : 0))
+                    .gesture(
+                        DragGesture().onChanged({ (val) in
+                            if abs(val.translation.height) > abs(val.translation.width) {
+                                let percentage: CGFloat = (-val.translation.height / reader.size.height)
+                                let calc = currentZoomFactor + percentage
+                                let zoomFactor: CGFloat = min(max(calc, 1), 5)
+                                currentZoomFactor = zoomFactor
+                                model.zoom(with: zoomFactor)
+                            }
+                        })
+                    )
+            }.onRotate { newOrientation in
+                if model.showImage == false {
+                    self.orientation = newOrientation
+                }
+            }
+                
 
             if model.showSpinner {
                 ProgressView()
@@ -194,54 +193,71 @@ struct CameraView: View {
                 HStack {
                     flashButton
                         .padding()
-                        .rotationEffect(.degrees(90))
+                        .rotationEffect(.degrees(self.orientation == .landscapeLeft ? 90 : 0))
                     Spacer()
                     captureButton
                         .padding()
-                        .rotationEffect(.degrees(90))
+                        .rotationEffect(.degrees(self.orientation == .landscapeLeft ? 90 : 0))
                     Spacer()
                     flipCameraButton
                         .padding()
-                        .rotationEffect(.degrees(90))
+                        .rotationEffect(.degrees(self.orientation == .landscapeLeft ? 90 : 0))
                 }
             }
             
+//            if self.showConfirmation == true {
+                Image(systemName: "checkmark")
+                    .font(.system(size: 240))
+                    .foregroundColor(.green)
+                    .rotationEffect(.degrees(Double(rotateConfirmationCheckmark)))
+                    .clipShape(Rectangle().offset(x: CGFloat(showConfirmationCheckmark)))
+                    
+                    
             
+//            }
+            
+            if self.showDeleteConfirmation {
+                
+            }
 
             if model.showImage {
                 ZStack{
                     Color("ButtonColor")
- 
-//                        .ignoresSafeArea()
-//
-//                        Image(uiImage: model.photo.image!)
-//                            .resizable()
-//                            .rotationEffect(.degrees(270))
-//                            .aspectRatio(contentMode: .fit)
-//                            .ignoresSafeArea()
-//                            .scaledToFit()
-//                            .opacity(pictureHidden ? 0 : 1)
-//                            .animation(.easeIn(duration: 2))
-                        
-                        Image("PolaroidFrame")
-                            .resizable()
-                            .frame(width: UIScreen.main.bounds.width*0.85, height:(UIScreen.main.bounds.width*0.85)*1.25)
-                    
                         Image(uiImage: model.photo.image!)
                             .resizable()
                             .scaledToFit()
-                            .rotationEffect(.degrees(90))
-                            .position(x: UIScreen.main.bounds.width*0.55466, y: UIScreen.main.bounds.height*0.44977)
                             .opacity(pictureHidden ? 0 : 1)
                             .animation(.easeIn(duration: 5))
-                    
+                            .frame(
+                                width: self.orientation == .landscapeLeft ? UIScreen.main.bounds.width * 0.81 : UIScreen.main.bounds.width * 0.88,
+                                height: self.orientation == .landscapeLeft ? UIScreen.main.bounds.width * 0.9 : UIScreen.main.bounds.width * 0.88 * 0.9,
+                                alignment: .center)
+                            .offset(
+                                x: self.orientation == .landscapeLeft ? UIScreen.main.bounds.width*0.045 : 0,
+                                y: self.orientation == .landscapeLeft ? 0: -UIScreen.main.bounds.width*0.05)
+                      
+
+                    if currentUser.frameURL == "" {
+                        Image("PolaroidFrame")
+                            .resizable()
+                            .scaledToFit()
+                            .rotationEffect(.degrees(self.orientation == .landscapeLeft ? 90 : 0))
+                    } else {
+                        URLImage(URL(string: currentUser.frameURL)!) { image in
+                            image
+                                .resizable()
+                                .scaledToFit()
+                                .rotationEffect(.degrees(self.orientation == .landscapeLeft ? 90 : 0))
+                        }
+                    }
+
                     VStack {
                         Spacer()
                         HStack {
                             Button(action: {
+                                self.showDeleteConfirmation = true
                                 model.showImage = false
                                 pictureHidden = true
-                                print(UIScreen.main.bounds)
                                //                      timer.upstream.connect().cancel()
                             }, label: {
                                 Circle()
@@ -249,16 +265,25 @@ struct CameraView: View {
                                     .frame(width: 55, height: 55, alignment: .center)
                                     .overlay(
                                         Image(systemName: "xmark")
-                                            .rotationEffect(.degrees(90))
+                                            .rotationEffect(.degrees(self.orientation == .landscapeLeft ? 90 : 0))
                                             .imageScale(.large)
                                             .foregroundColor(.white))
                             })
                                 .padding()
                             Spacer()
                             Button(action: {
+                                self.showConfirmation = true
+                                    withAnimation(.interpolatingSpring(stiffness: 170, damping: 15)){
+                                        self.showConfirmationCheckmark = 0
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                            self.showConfirmationCheckmark = -240
+                                        }
+                                    }
+//                                self.showConfirmationCheckmark = 0
+                                self.rotateConfirmationCheckmark = 0
                                 model.showImage = false
                                 pictureHidden = true
-                                storageManager.upload(image: model.photo.image!, inPhotoRoll: currentUser.currentPhotoRoll)
+                                storageManager.upload(image: model.photo.image!, user: currentUser)
                                 currentUser.updatePhotoRollStatus()
                                 ////                            timer.upstream.connect().cancel()
                             }, label: {
@@ -267,9 +292,10 @@ struct CameraView: View {
                                     .frame(width: 55, height: 55, alignment: .center)
                                     .overlay(
                                         Image(systemName: "checkmark")
-                                            .rotationEffect(.degrees(90))
+                                            .rotationEffect(.degrees(self.orientation == .landscapeLeft ? 90 : 0))
                                             .imageScale(.large)
                                             .foregroundColor(.white))
+                                
                             })
                                 .padding()
                         }
@@ -279,6 +305,7 @@ struct CameraView: View {
                     
                 }.onAppear(perform: {
                     pictureHidden = false
+                    self.orientation = UIDevice.current.orientation
                 })
             }
         }

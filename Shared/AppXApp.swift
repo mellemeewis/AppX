@@ -13,14 +13,10 @@ struct AppXApp: App {
     init() {
         FirebaseApp.configure()
     }
+
     var body: some Scene {
         WindowGroup {
             ContentView()
-//                .onOpenURL { (url) in
-//                print(url)
-//                let queryItems = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems
-//                print(queryItems)
-//            }
         }
     }
 }

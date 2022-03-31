@@ -27,37 +27,56 @@ class User: ObservableObject {
 
     @Published var currentPhotoRoll: Int = 1
     @Published var photosInCurrentPhotoRoll: Int = 0
+    @Published var currentPromotionPhotoRoll: Int = 1
+    @Published var photosInCurrentPromotionPhotoRoll: Int = 0
+
     @Published var currentPromotion: String = ""
-    
+    @Published var hasActivePaymentMethod: String = "false"
+
     // NOT STORED IN USER PART OF DB BUT IN PROMOTION PART
-    @Published var promotionURL: String = ""
+    @Published var bannerURL: String = ""
     @Published var promotionCompany: String = ""
+    @Published var frameURL: String = ""
+    @Published var maxPhotosInCurrentPromotionPhotoRoll = 3
     // NOT STORED IN USER PART OF DB BUT IN PROMOTION PART ^
 
     // NOT STORED IN USER PART OF DB BUT IN GENERAL PART
-    @Published var maxPhotosInCurrentPhotoRoll = 3
+    @Published var maxPhotosInNormalPhotoRoll = 10
     // NOT STORED IN USER PART OF DB BUT IN GENERAL PART ^
 
+    
+    // NOT STORED IN DB
+    @Published var showPaymentSheet: Bool = false
+    @Published var forcePayment: Bool = false
+    @Published var showNewPhotoRollSheet: Bool = false
+//    @Published var forceEmailVerification: Bool = false
+    // NOT STORED IN DB ^
+
+
     public func setPromotion(couponCode: String) {
-        self.ref.child(self.uid).updateChildValues(["currentPromotion": couponCode])
+        self.ref.child("users/\(self.uid)").updateChildValues(["currentPromotion": couponCode])
     }
     
     public func endPromotion() {
-        self.ref.child(self.uid).updateChildValues(["currentPromotion": ""])
+        self.ref.child("users/\(self.uid)").updateChildValues(["currentPromotion": ""])
     }
     
     public func initializeDataBase(email: String, firstName: String, lastName: String) {
-        self.ref.child(self.uid).setValue(["firstName": firstName,
-                                           "email": email,
-                                           "lastName": lastName,
-                                           "address": "",
-                                           "postalCode": "",
-                                           "addition": "",
-                                           "city": "",
-                                           "country": "",
-                                           "currentPhotoRoll": 1,
-                                           "photosInCurrentPhotoRoll": 0,
-                                           "currentPromotion": ""])
+        self.ref.child("users/\(self.uid)").setValue(["firstName": firstName,
+                                                      "email": email,
+                                                      "lastName": lastName,
+                                                      "address": "",
+                                                      "postalCode": "",
+                                                      "addition": "",
+                                                      "city": "",
+                                                      "country": "",
+                                                      "currentPhotoRoll": 1,
+                                                      "photosInCurrentPhotoRoll": 0,
+                                                      "currentPromotionPhotoRoll": 1,
+                                                      "photosInCurrentPromotionPhotoRoll": 0,
+                                                      "currentPromotion": "",
+                                                      "hasActivePaymentMethod": "false"
+                                                     ])
     }
 
 
@@ -67,7 +86,7 @@ class User: ObservableObject {
         self.uid = FirUser.uid
         self.email = FirUser.email ?? ""
     
-        let userInfoRef = self.ref.child(self.uid)
+        let userInfoRef = self.ref.child("users/\(self.uid)")
         
         userInfoRef.observe(.value, with: { (snapshot) in
             guard let value = snapshot.value as? NSDictionary else { return }
@@ -81,29 +100,47 @@ class User: ObservableObject {
             self.country = value["country"] as? String ?? ""
             self.mollieID = value["mollieID"] as? String ?? ""
             self.orders = self.createOrderArray(orders: value["orders"] as? Dictionary ?? [:])
-
+            self.hasActivePaymentMethod = value["hasActivePaymentMethod"] as? String ?? "false"
             self.currentPhotoRoll = value["currentPhotoRoll"] as? Int ?? 0
             self.photosInCurrentPhotoRoll = value["photosInCurrentPhotoRoll"] as? Int ?? 0
+            self.currentPromotionPhotoRoll = value["currentPromotionPhotoRoll"] as? Int ?? 0
+            self.photosInCurrentPromotionPhotoRoll = value["photosInCurrentPromotionPhotoRoll"] as? Int ?? 0
             self.currentPromotion = value["currentPromotion"] as? String ?? ""
             
             if self.currentPromotion != "" {
                 let promotionRef = self.ref.child("promotions").child(self.currentPromotion)
                 promotionRef.observeSingleEvent(of: .value, with: { (snapshot) in
                     guard let value = snapshot.value as? NSDictionary else { return }
-                    self.promotionURL = value["bannerURL"] as? String ?? ""
+                    self.bannerURL = value["bannerURL"] as? String ?? ""
+                    self.frameURL = value["frameURL"] as? String ?? ""
                     self.promotionCompany = value["company"] as? String ?? ""
-                    self.maxPhotosInCurrentPhotoRoll = value["nrOfPhotos"] as? Int ?? 0
+                    self.maxPhotosInCurrentPromotionPhotoRoll = value["nrOfPhotos"] as? Int ?? 0
                 })
             } else {
                 let generalInfoRef = self.ref.child("generalInfo")
                 generalInfoRef.observeSingleEvent(of: .value, with: { (snapshot) in
                     guard let value = snapshot.value as? NSDictionary else { return }
-                    self.maxPhotosInCurrentPhotoRoll = value["maxPhotosInPhotoRoll"] as? Int ?? 0
-                    self.promotionURL = ""
+                    self.maxPhotosInNormalPhotoRoll = value["maxPhotosInNormalPhotoRoll"] as? Int ?? 0
+                    self.bannerURL = ""
+                    self.frameURL = ""
                     self.promotionCompany = ""
                     self.currentPromotion = ""
                 })
             }
+//            if self.maxPhotosInCurrentPromotionPhotoRoll - self.photosInCurrentPromotionPhotoRoll == 1 || self.maxPhotosInNormalPhotoRoll - self.photosInCurrentPhotoRoll == 1 {
+//                self.forceEmailVerification = true
+//            }
+            if self.hasActivePaymentMethod == "false" && self.currentPromotion == "" && self.maxPhotosInNormalPhotoRoll - self.photosInCurrentPhotoRoll == 1 {
+                self.forcePayment = true
+            }
+            if self.hasActivePaymentMethod == "false" && self.currentPromotion == "" && self.maxPhotosInNormalPhotoRoll - self.photosInCurrentPhotoRoll <= 3 && self.forcePayment == false {
+                self.showPaymentSheet = true
+            }
+            if self.hasActivePaymentMethod == "true" {
+                self.showPaymentSheet = false
+                self.forcePayment = false
+            }
+            
         })
     }
     
@@ -115,7 +152,10 @@ class User: ObservableObject {
             let date = valueDict["date"] as! String
             let status = valueDict["status"] as! String
             let amount = valueDict["amount"] as! String
-            let newOrder = Order(orderNumber: orderNumber, date: date, status: status, amount: amount)
+            let discount = valueDict["discount"] as! String
+            let amountAfterDiscount = valueDict["amountAfterDiscount"] as! String
+
+            let newOrder = Order(orderNumber: orderNumber, date: date, status: status, amount: amount, discount: discount, amountAfterDiscount: amountAfterDiscount)
             orderArray.append(newOrder)
         }
         let df = DateFormatter()
@@ -125,16 +165,54 @@ class User: ObservableObject {
     }
     
     public func updatePhotoRollStatus() {
-        if self.photosInCurrentPhotoRoll == maxPhotosInCurrentPhotoRoll - 1 {
-            self.ref.child(self.uid).updateChildValues(["currentPhotoRoll": ServerValue.increment(1), "photosInCurrentPhotoRoll": 0] as [String : Any])
+        if self.currentPromotion == "" {
+            let newRollValues = ["currentPhotoRoll": ServerValue.increment(1), "photosInCurrentPhotoRoll": 0] as [String : Any]
+            let newPhotoValues = ["photosInCurrentPhotoRoll": ServerValue.increment(1)]
+            
+            if self.photosInCurrentPhotoRoll == maxPhotosInNormalPhotoRoll - 1 {
+                self.showNewPhotoRollSheet = true
+                self.ref.child("users/\(self.uid)").updateChildValues(newRollValues)
+                self.endPromotion()
+            } else {
+                self.ref.child("users/\(self.uid)").updateChildValues(newPhotoValues)
+            }
+            
         } else {
-            self.ref.child(self.uid).updateChildValues(["photosInCurrentPhotoRoll": ServerValue.increment(1)])
+            let newRollValues = ["currentPromotionPhotoRoll": ServerValue.increment(1), "photosInCurrentPromotionPhotoRoll": 0] as [String : Any]
+            let newPhotoValues = ["photosInCurrentPromotionPhotoRoll": ServerValue.increment(1)]
+            
+            if self.photosInCurrentPromotionPhotoRoll == maxPhotosInCurrentPromotionPhotoRoll - 1 {
+                self.showNewPhotoRollSheet = true
+                self.ref.child("users/\(self.uid)").updateChildValues(newRollValues)
+            } else {
+                self.ref.child("users/\(self.uid)").updateChildValues(newPhotoValues)
+            }
         }
+        
+
     }
+        
+//        if self.currentPromotion == "" {
+//            if self.photosInCurrentPhotoRoll == maxPhotosInCurrentPhotoRoll - 1 {
+//                self.showNewPhotoRollSheet = true
+//                self.ref.child("users/\(self.uid)").updateChildValues(["currentPhotoRoll": ServerValue.increment(1), "photosInCurrentPhotoRoll": 0] as [String : Any])
+//            } else {
+//                self.ref.child("users/\(self.uid)").updateChildValues(["photosInCurrentPhotoRoll": ServerValue.increment(1)])
+//            }
+//        } else {
+//            if self.photosInCurrentPhotoRoll == maxPhotosInCurrentPhotoRoll - 1 {
+//                self.showNewPhotoRollSheet = true
+//                self.ref.child("users/\(self.uid)").updateChildValues(["currentPromotionPhotoRoll": ServerValue.increment(1), "photosInCurrentPromotionPhotoRoll": 0] as [String : Any])
+//                self.endPromotion()
+//            } else {
+//                self.ref.child("users/\(self.uid)").updateChildValues(["photosInCurrentPromotionPhotoRoll": ServerValue.increment(1)])
+//            }
+//        }
+//    }
     
     
     public func updateAddres(address: String, postalCode: String, addition: String, city: String, country: String) {
-        self.ref.child(self.uid).updateChildValues(["address": address,
+        self.ref.child("users/\(self.uid)").updateChildValues(["address": address,
                                                      "postalCode": postalCode,
                                                      "addition": addition,
                                                      "city": city,
@@ -151,20 +229,21 @@ class User: ObservableObject {
             }
         }
         if firstName != "" {
-            self.ref.child("\(self.uid)/firstName").setValue(firstName)
+            self.ref.child("users/\(self.uid)/firstName").setValue(firstName)
         }
         if lastName != "" {
-            self.ref.child("\(self.uid)/lastName").setValue(lastName)
+            self.ref.child("users/\(self.uid)/lastName").setValue(lastName)
         }
     }
     
-    public func updateEmail(email: String) {
+    public func updateEmail(email: String, completion: @escaping (Error?) -> Void) {
         Auth.auth().currentUser?.updateEmail(to: email) { error in
             if error != nil {
                 print(error as Any)
-                print("email update failed")
+                completion(error)
             } else {
-                self.ref.child("\(self.uid)/email").setValue(email)
+//                completion("succes")
+                self.ref.child("users/\(self.uid)/email").setValue(email)
             }
         }
     }
@@ -172,18 +251,9 @@ class User: ObservableObject {
     public func sendEmailVerification() {
         Auth.auth().currentUser?.sendEmailVerification { error in
             if error != nil {
+                print(error)
                 print("email verification failed")
             }
         }
     }
-}
-
-
-struct Order : Identifiable, Hashable {
-    let id = UUID()
-    public var orderNumber: String
-    public var date: String
-    public var status: String
-    public var amount: String
-
 }

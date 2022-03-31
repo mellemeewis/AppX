@@ -90,7 +90,10 @@ struct PaymentMethodView: View {
         }
         .onAppear(perform: { self.fetchMandate() })
         .onOpenURL { (url) in
-            print(url)
+            self.fetchMandate()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+            print("FOREGROUND")
             self.fetchMandate()
         }
     }

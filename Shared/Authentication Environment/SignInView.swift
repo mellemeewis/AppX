@@ -14,6 +14,9 @@ struct SignInView: View {
     @State public var password: String = ""
     @Binding var userSignedIn: Bool
     
+    @State public var errorMessage: String = ""
+    @State public var showAlert: Bool = false
+    
     var body: some View {
     
         ZStack {
@@ -60,6 +63,9 @@ struct SignInView: View {
             }
             .padding()
         }
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("Error Signing In"), message: Text(errorMessage), dismissButton: .default(Text("Got it!")))
+        }
     }
     
     
@@ -68,21 +74,18 @@ struct SignInView: View {
             
             if let error = error as NSError? {
                 print(error)
-                guard let errorCode = AuthErrorCode(rawValue: error.code) else {
-                    print("there was an error signing up but it could not be matched with a firebase code")
+                guard let errorMessage = error.userInfo["NSLocalizedDescription"] as? String else {
+                    self.errorMessage = "An unknown error occured"
+                    self.showAlert = true
                     return
                 }
-                switch errorCode {
-                case .wrongPassword:
-                    print("invalid email")
-                case.userDisabled:
-                    print("weak password")
-                case .invalidEmail:
-                    print("Email used")
-                default:
-                    print("there was an error signing up but it could not be matched with a firebase code")
+                guard let errorCode = AuthErrorCode(rawValue: error.code) else {
+                    self.errorMessage = "There was an error signing up but it could not be matched with a firebase code"
+                    self.showAlert = true
+                    return
                 }
-                return
+                self.errorMessage = errorMessage
+                self.showAlert = true
             }
             else {
                 self.userSignedIn = true

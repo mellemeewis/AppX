@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "LaunchScreenImage.png",
+      "filename" : "Achtergrond 1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "Achtergrond 2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "Achtergrond 3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

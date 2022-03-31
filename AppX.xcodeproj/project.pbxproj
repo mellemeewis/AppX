@@ -15,7 +15,6 @@
 		03174DC72737EB9200ABA99C /* PaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03174DC62737EB9200ABA99C /* PaymentService.swift */; };
 		03560CB227319F9B00305527 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03560CB127319F9B00305527 /* UIColor.swift */; };
 		035AB86D2731514F00A40045 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 035AB86C2731514F00A40045 /* Assets.xcassets */; };
-		035AB8712731532F00A40045 /* LaunchScreenImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 035AB8702731532F00A40045 /* LaunchScreenImage.png */; };
 		035EDBD62710864B000C4DFC /* CameraRollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035EDBD52710864B000C4DFC /* CameraRollView.swift */; };
 		03675D122727186400E0257C /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 03675D112727186400E0257C /* URLImage */; };
 		03675D142727186400E0257C /* URLImageStore in Frameworks */ = {isa = PBXBuildFile; productRef = 03675D132727186400E0257C /* URLImageStore */; };
@@ -33,6 +32,15 @@
 		03B5DD3A270200A0005C96F1 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B5DD39270200A0005C96F1 /* StorageManager.swift */; };
 		03BA61502739CD75006B2781 /* PaymentMethodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BA614F2739CD75006B2781 /* PaymentMethodView.swift */; };
 		03BA6152273BD631006B2781 /* OrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BA6151273BD631006B2781 /* OrdersView.swift */; };
+		03BA615D2743D168006B2781 /* LargeTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BA615C2743D168006B2781 /* LargeTextFieldStyle.swift */; };
+		03BA615F2743E29F006B2781 /* WelcomeToAppxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BA615E2743E29F006B2781 /* WelcomeToAppxView.swift */; };
+		03BA6162274545F0006B2781 /* PaymentSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BA6161274545F0006B2781 /* PaymentSheetView.swift */; };
+		03BA616627454E63006B2781 /* NewPhotoRollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BA616527454E63006B2781 /* NewPhotoRollView.swift */; };
+		03BA616827469672006B2781 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BA616727469671006B2781 /* Order.swift */; };
+		03BA616A2746A04F006B2781 /* VerifyEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BA61692746A04F006B2781 /* VerifyEmailView.swift */; };
+		03BA616C2746AC4B006B2781 /* WelcomeToAppx2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BA616B2746AC4B006B2781 /* WelcomeToAppx2View.swift */; };
+		03BA616E2746ACB3006B2781 /* WelcomeToAppx3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BA616D2746ACB3006B2781 /* WelcomeToAppx3View.swift */; };
+		03BA61702746AE39006B2781 /* WelcomeToAppx4View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BA616F2746AE39006B2781 /* WelcomeToAppx4View.swift */; };
 		03C3F30826F4B6D300BB9994 /* PhotoCaptureProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C3F30726F4B6D300BB9994 /* PhotoCaptureProcessor.swift */; };
 		03C3F30A26F4B78700BB9994 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C3F30926F4B78700BB9994 /* CameraViewModel.swift */; };
 		03C3F30C26F4B7B500BB9994 /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C3F30B26F4B7B500BB9994 /* CameraPreview.swift */; };
@@ -65,7 +73,6 @@
 		03174DC62737EB9200ABA99C /* PaymentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentService.swift; sourceTree = "<group>"; };
 		03560CB127319F9B00305527 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		035AB86C2731514F00A40045 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = SOURCE_ROOT; };
-		035AB8702731532F00A40045 /* LaunchScreenImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LaunchScreenImage.png; path = ../../../../../Downloads/LaunchScreenImage.png; sourceTree = "<group>"; };
 		035EDBD52710864B000C4DFC /* CameraRollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraRollView.swift; sourceTree = "<group>"; };
 		038300B7270730BB00D1E08F /* TextAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAlert.swift; sourceTree = "<group>"; };
 		038300BC27074F8100D1E08F /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
@@ -81,6 +88,15 @@
 		03B5DD39270200A0005C96F1 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		03BA614F2739CD75006B2781 /* PaymentMethodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodView.swift; sourceTree = "<group>"; };
 		03BA6151273BD631006B2781 /* OrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersView.swift; sourceTree = "<group>"; };
+		03BA615C2743D168006B2781 /* LargeTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeTextFieldStyle.swift; sourceTree = "<group>"; };
+		03BA615E2743E29F006B2781 /* WelcomeToAppxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeToAppxView.swift; sourceTree = "<group>"; };
+		03BA6161274545F0006B2781 /* PaymentSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSheetView.swift; sourceTree = "<group>"; };
+		03BA616527454E63006B2781 /* NewPhotoRollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPhotoRollView.swift; sourceTree = "<group>"; };
+		03BA616727469671006B2781 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		03BA61692746A04F006B2781 /* VerifyEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyEmailView.swift; sourceTree = "<group>"; };
+		03BA616B2746AC4B006B2781 /* WelcomeToAppx2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeToAppx2View.swift; sourceTree = "<group>"; };
+		03BA616D2746ACB3006B2781 /* WelcomeToAppx3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeToAppx3View.swift; sourceTree = "<group>"; };
+		03BA616F2746AE39006B2781 /* WelcomeToAppx4View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeToAppx4View.swift; sourceTree = "<group>"; };
 		03C3F30726F4B6D300BB9994 /* PhotoCaptureProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCaptureProcessor.swift; sourceTree = "<group>"; };
 		03C3F30926F4B78700BB9994 /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		03C3F30B26F4B7B500BB9994 /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
@@ -147,7 +163,9 @@
 				0304548026EFF49C000E78F6 /* AppXApp.swift */,
 				038C69C226F0C34C0051DE59 /* ContentView.swift */,
 				035EDBD52710864B000C4DFC /* CameraRollView.swift */,
-				035AB8702731532F00A40045 /* LaunchScreenImage.png */,
+				03BA6161274545F0006B2781 /* PaymentSheetView.swift */,
+				03BA616527454E63006B2781 /* NewPhotoRollView.swift */,
+				03BA61692746A04F006B2781 /* VerifyEmailView.swift */,
 				035AB86C2731514F00A40045 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -231,6 +249,10 @@
 				038300BC27074F8100D1E08F /* SignInView.swift */,
 				038300BE27074FE700D1E08F /* SignUpView.swift */,
 				038300C8270DF73700D1E08F /* AddressViewAuthenticationEnvironment.swift */,
+				03BA615E2743E29F006B2781 /* WelcomeToAppxView.swift */,
+				03BA616B2746AC4B006B2781 /* WelcomeToAppx2View.swift */,
+				03BA616D2746ACB3006B2781 /* WelcomeToAppx3View.swift */,
+				03BA616F2746AE39006B2781 /* WelcomeToAppx4View.swift */,
 			);
 			path = "Authentication Environment";
 			sourceTree = "<group>";
@@ -240,6 +262,8 @@
 			children = (
 				03F06E4826F4E4DF00D7486A /* AlertError.swift */,
 				038300B7270730BB00D1E08F /* TextAlert.swift */,
+				03BA615C2743D168006B2781 /* LargeTextFieldStyle.swift */,
+				03BA616727469671006B2781 /* Order.swift */,
 			);
 			path = Structs;
 			sourceTree = "<group>";
@@ -344,7 +368,6 @@
 			files = (
 				035AB86D2731514F00A40045 /* Assets.xcassets in Resources */,
 				030454BE26EFF5FD000E78F6 /* GoogleService-Info.plist in Resources */,
-				035AB8712731532F00A40045 /* LaunchScreenImage.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,23 +435,32 @@
 				03174DC72737EB9200ABA99C /* PaymentService.swift in Sources */,
 				03C3F30E26F4B80B00BB9994 /* CameraView.swift in Sources */,
 				03B5DD3A270200A0005C96F1 /* StorageManager.swift in Sources */,
+				03BA616C2746AC4B006B2781 /* WelcomeToAppx2View.swift in Sources */,
 				03BA6152273BD631006B2781 /* OrdersView.swift in Sources */,
 				038300C9270DF73700D1E08F /* AddressViewAuthenticationEnvironment.swift in Sources */,
+				03BA616827469672006B2781 /* Order.swift in Sources */,
 				03F06E4626F4C11900D7486A /* ImageResizer.swift in Sources */,
 				03C3F30C26F4B7B500BB9994 /* CameraPreview.swift in Sources */,
 				035EDBD62710864B000C4DFC /* CameraRollView.swift in Sources */,
 				03BA61502739CD75006B2781 /* PaymentMethodView.swift in Sources */,
 				038C69C326F0C34C0051DE59 /* ContentView.swift in Sources */,
+				03BA616627454E63006B2781 /* NewPhotoRollView.swift in Sources */,
 				03560CB227319F9B00305527 /* UIColor.swift in Sources */,
 				038300BD27074F8100D1E08F /* SignInView.swift in Sources */,
+				03BA61702746AE39006B2781 /* WelcomeToAppx4View.swift in Sources */,
+				03BA616A2746A04F006B2781 /* VerifyEmailView.swift in Sources */,
+				03BA615D2743D168006B2781 /* LargeTextFieldStyle.swift in Sources */,
+				03BA6162274545F0006B2781 /* PaymentSheetView.swift in Sources */,
 				038C69E226F4B1290051DE59 /* CameraService.swift in Sources */,
 				03F06E4926F4E4DF00D7486A /* AlertError.swift in Sources */,
 				038300BF27074FE700D1E08F /* SignUpView.swift in Sources */,
+				03BA616E2746ACB3006B2781 /* WelcomeToAppx3View.swift in Sources */,
 				03C3F30826F4B6D300BB9994 /* PhotoCaptureProcessor.swift in Sources */,
 				03C8D849272858F30075EF41 /* CardView.swift in Sources */,
 				038300C1270C6CCF00D1E08F /* AddressViewAccountEnvironment.swift in Sources */,
 				038C69CE26F1F1590051DE59 /* WelcomeView.swift in Sources */,
 				03174DC527340BB000ABA99C /* View.swift in Sources */,
+				03BA615F2743E29F006B2781 /* WelcomeToAppxView.swift in Sources */,
 				038300C4270C77A500D1E08F /* LocationService.swift in Sources */,
 				03C3F30A26F4B78700BB9994 /* CameraViewModel.swift in Sources */,
 			);

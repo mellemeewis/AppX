@@ -26,8 +26,8 @@ struct WelcomeView: View {
         
 //                Spacer()
                 VStack {
-                    Button(action: { showSignInSheet.toggle() }) {
-                        Text("Sign In")
+                    Button(action: { showSignUpSheet.toggle() }) {
+                        Text("Create Account")
                             .fontWeight(.bold)
                             .font(.title)
                             .foregroundColor(.white)
@@ -36,8 +36,8 @@ struct WelcomeView: View {
                             .background(Color("ButtonColor"))
                             .cornerRadius(10)
                     }
-                    Button(action: { showSignUpSheet.toggle() }) {
-                        Text("Sign Up")
+                    Button(action: { showSignInSheet.toggle() }) {
+                        Text("Sign In")
                             .fontWeight(.bold)
                             .font(.title)
                             .foregroundColor(.white)
@@ -54,7 +54,10 @@ struct WelcomeView: View {
             SignInView(userSignedIn: $userSignedIn)
         }
         .sheet(isPresented: $showSignUpSheet) {
-            SignUpView(currentUser: self.currentUser, paymentService: self.paymentService, userSignedIn: $userSignedIn)
+            SignUpView(currentUser: self.currentUser, paymentService: self.paymentService, userSignedIn: $userSignedIn).onDisappear(perform: {
+                if Auth.auth().currentUser != nil {
+                    self.userSignedIn = true
+                } })
 //            SignUpView(currentUser: self.currentUser)
         }
     }

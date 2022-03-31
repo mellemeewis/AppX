@@ -13,23 +13,37 @@ class StorageManager: ObservableObject {
     let storageRef = Storage.storage().reference()
     let formatter = DateFormatter()
 
-    func upload(image: UIImage, inPhotoRoll photoRollNr: Int) {
+    func upload(image: UIImage, user : User) {
+        
+        let cgImage = image.cgImage
+        var result: UIImage
+        if image.size.height > image.size.width {
+            result = UIImage(cgImage: cgImage!, scale: image.scale/10, orientation: UIImage.Orientation.left)
+        } else {
+            result = UIImage(cgImage: cgImage!, scale: image.scale/10, orientation: image.imageOrientation)
+        }
+
         formatter.timeZone = TimeZone(identifier: "CET")
         formatter.dateFormat = "dd-MM-yyyy-HH:mm:ss"
 
         guard let currentUserID = Auth.auth().currentUser?.uid else {
             print("Failed to retrieve current user ID")
             return
-
         }
         
         
-        let storageRef = storageRef.child(currentUserID)
+        let storageRef = storageRef.child("users").child(currentUserID)
         let dateString = formatter.string(from: Date())
-        let imageRef = storageRef.child("photoRoll\(photoRollNr)/\(dateString)")
+        
+        var imageRef: StorageReference!
+        if user.currentPromotion == "" {
+            imageRef = storageRef.child("photoRoll\(user.currentPhotoRoll)/\(dateString)")
+        } else {
+            imageRef = storageRef.child("promotionPhotoRolls/promotionPhotoRoll\(user.currentPromotionPhotoRoll)_\(user.promotionCompany)/\(dateString)_\(user.promotionCompany)")
+        }
         
         // Convert the image into JPEG and compress the quality to reduce its size
-        let data = image.jpegData(compressionQuality: 1)
+        let data = result.jpegData(compressionQuality: 0.1)
         
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpg"

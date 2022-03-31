@@ -47,9 +47,8 @@ class PaymentService: ObservableObject {
     }
     
     func listMandates(user: User, completion: @escaping (Bool) -> Void) {
-        let listMandateInfo = ["customerID": user.mollieID]
+        let listMandateInfo = ["customerID": user.mollieID, "firebaseUID": user.uid]
         Functions.functions().httpsCallable("listMandates").call(listMandateInfo) { result, error in
-            print("LISTING")
             if let error = error as NSError? {
                 print(error)
                 if error.domain == FunctionsErrorDomain {

@@ -61,8 +61,8 @@ final class CameraViewModel: ObservableObject {
         service.configure()
     }
     
-    func capturePhoto() {
-        service.capturePhoto()
+    func capturePhoto(orientation: UIDeviceOrientation, isFrontCamera: Bool) {
+        service.capturePhoto(orientation: orientation, isFrontCamera: isFrontCamera)
     }
     
     func flipCamera() {

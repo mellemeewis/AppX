@@ -14,7 +14,9 @@ struct AccountView: View {
     @Binding var userSignedIn: Bool
     @State var showNameAlert = false
     @State var showEmailAlert = false
-    
+    @State var showEmailErrorAlert = false
+    @State var emailErrorAlertText: String = ""
+
     var body: some View {
         
         VStack {
@@ -56,11 +58,19 @@ struct AccountView: View {
                         .alert(isPresented: $showEmailAlert,
                             TextAlert(title: "Email", message: "Enter your email", placeholder1: currentUser.email, keyboardType: .emailAddress) { firstField, secondField in
                                 if let email = firstField {
-                                    currentUser.updateEmail(email: email)
-                                        print(email)
+                                    currentUser.updateEmail(email: email) { error in
+                                        if error != nil {
+                                            self.emailErrorAlertText = error?.localizedDescription ?? "An unknown error occured."
+                                            self.showEmailErrorAlert = true
+                                        }
+                                    }
+                                        
                                 }
                             }
                         )
+                        .alert(isPresented: $showEmailErrorAlert) {
+                            Alert(title: Text("Error Changing Email"), message: Text(self.emailErrorAlertText), dismissButton: .default(Text("Got it!")))
+                        }
                         
                         NavigationLink(destination: AddressViewAccountEnvironment(currentUser: self.currentUser)) {
                             HStack {

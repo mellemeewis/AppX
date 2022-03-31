@@ -8,16 +8,20 @@ import UIKit
 public struct Photo: Identifiable, Equatable {
     public var id: String
     public var originalData: Data
+    public var orientation: UIDeviceOrientation
+    public var isFrontCamera: Bool
     
-    public init(id: String = UUID().uuidString, originalData: Data) {
+    public init(id: String = UUID().uuidString, originalData: Data, orientation: UIDeviceOrientation, isFrontCamera: Bool) {
         self.id = id
         self.originalData = originalData
+        self.orientation = orientation
+        self.isFrontCamera = isFrontCamera
     }
 }
 
 extension Photo {
     public var compressedData: Data? {
-        ImageResizer(targetWidth: UIScreen.main.bounds.size.width).resize(data: originalData)?.jpegData(compressionQuality: 0.5)
+        ImageResizer().resize(data: originalData, orientation: self.orientation, isFrontCamera: self.isFrontCamera)?.jpegData(compressionQuality: 0.5)
     }
 
     public var image: UIImage? {
@@ -114,6 +118,7 @@ public class CameraService {
                 session.commitConfiguration()
                 return
             }
+
             
             let videoDeviceInput = try AVCaptureDeviceInput(device: videoDevice)
             
@@ -288,15 +293,12 @@ public class CameraService {
     }
 
 
-    public func capturePhoto() {
+    public func capturePhoto(orientation: UIDeviceOrientation, isFrontCamera: Bool) {
         if self.setupResult != .configurationFailed {
             self.isCameraButtonDisabled = true
-            
-            sessionQueue.async {
+                        sessionQueue.async {
                 if let photoOutputConnection = self.photoOutput.connection(with: .video) {
-//                    photoOutputConnection.videoOrientation = .landscapeLeft
-                    photoOutputConnection.videoOrientation = .landscapeRight
-
+                    photoOutputConnection.videoOrientation = .portrait
                 }
                 var photoSettings = AVCapturePhotoSettings()
                 
@@ -332,7 +334,7 @@ public class CameraService {
                 }, completionHandler: { (photoCaptureProcessor) in
                     // When the capture is complete, remove a reference to the photo capture delegate so it can be deallocated.
                     if let data = photoCaptureProcessor.photoData {
-                        self.photo = Photo(originalData: data)
+                        self.photo = Photo(originalData: data, orientation: orientation, isFrontCamera: isFrontCamera)
                         print("passing photo")
                     } else {
                         print("No photo data")
