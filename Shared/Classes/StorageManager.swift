@@ -7,22 +7,27 @@
 
 import SwiftUI
 import Firebase
+import AVFoundation
 
 
 class StorageManager: ObservableObject {
     let storageRef = Storage.storage().reference()
     let formatter = DateFormatter()
 
-    func upload(image: UIImage, user : User) {
+    func upload(image: UIImage, user : User, cameraPosition: AVCaptureDevice.Position) {
         
         let cgImage = image.cgImage
+
         var result: UIImage
         if image.size.height > image.size.width {
-            result = UIImage(cgImage: cgImage!, scale: image.scale/10, orientation: UIImage.Orientation.left)
+            if cameraPosition == .front {
+                result = UIImage(cgImage: cgImage!, scale: image.scale/10, orientation: UIImage.Orientation.down)
+            } else {
+                result = UIImage(cgImage: cgImage!, scale: image.scale/10, orientation: UIImage.Orientation.up)
+            }
         } else {
             result = UIImage(cgImage: cgImage!, scale: image.scale/10, orientation: image.imageOrientation)
         }
-
         formatter.timeZone = TimeZone(identifier: "CET")
         formatter.dateFormat = "dd-MM-yyyy-HH:mm:ss"
 

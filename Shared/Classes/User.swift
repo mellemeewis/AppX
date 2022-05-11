@@ -132,15 +132,19 @@ class User: ObservableObject {
 //            }
             if self.hasActivePaymentMethod == "false" && self.currentPromotion == "" && self.maxPhotosInNormalPhotoRoll - self.photosInCurrentPhotoRoll == 1 {
                 self.forcePayment = true
+                print("HI\n\n\n1")
             }
             if self.hasActivePaymentMethod == "false" && self.currentPromotion == "" && self.maxPhotosInNormalPhotoRoll - self.photosInCurrentPhotoRoll <= 3 && self.forcePayment == false {
                 self.showPaymentSheet = true
+                print("HI\n\n\n2")
             }
             if self.hasActivePaymentMethod == "true" {
                 self.showPaymentSheet = false
                 self.forcePayment = false
+                print("HI\n\n\n3")
             }
-            
+            print("SHOW PAYMENT SHEET")
+            print(self.showPaymentSheet)
         })
     }
     

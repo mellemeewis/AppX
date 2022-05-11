@@ -88,6 +88,7 @@ struct CameraRollView: View {
                         
                         Spacer()
                         Button(action: {
+                            print("HI")
                                 currentUser.setPromotion(couponCode: couponCode)
                             }) {
                             Text("Validate")

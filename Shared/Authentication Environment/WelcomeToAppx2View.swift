@@ -16,7 +16,7 @@ struct WelcomeToAppx2View: View {
             Color("BackgroundColor").ignoresSafeArea()
             VStack {
                 Spacer()
-                Text("When you have taken 10 pictures, your photoroll is full and we'll start developing your photographs as soons as possible!")
+                Text("When you have taken 10 pictures, your photoroll is full and we'll start developing your photographs as soon as possible!")
                     .font(.headline)
                     .fontWeight(.bold)
                     .foregroundColor(Color.black)

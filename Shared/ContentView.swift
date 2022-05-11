@@ -7,11 +7,15 @@
 
 import SwiftUI
 import Firebase
+import URLImage
+import URLImageStore
+import Combine
 
 struct ContentView: View {
-    @Environment(\.presentationMode) var presentationMode
-    
-    @State private var selection = 2
+//    @Environment(\.presentationMode) var presentationMode
+    let urlImageService = URLImageService(fileStore: nil, inMemoryStore: URLImageInMemoryStore())
+
+    @State private var tabSelection = 2
     @State var userSignedIn: Bool = Auth.auth().currentUser != nil
     @StateObject var currentUser = User()
     @StateObject var paymentService = PaymentService()
@@ -44,19 +48,22 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             if userSignedIn {
-
-                TabView(selection: $selection) {
+                TabView(selection: $tabSelection) {
                     CameraRollView(currentUser: self.currentUser)
                      .tabItem {
                          Image(systemName: "photo.on.rectangle")
                          Text("PhotoRoll")
                      }
                      .tag(1)
-                    CameraView(currentUser: self.currentUser)
+                    ZStack {
+                        CameraView2(currentUser: self.currentUser)
+                        if currentUser.forcePayment {
+                            PaymentSheetView(currentUser: currentUser, tabSelection: $tabSelection)
+                        }
+                    }
                      .tabItem {
                         Image(systemName: "camera.fill")
                         Text("Camera")
-
                      }
                      .tag(2)
                     AccountView(paymentService: self.paymentService, currentUser: currentUser, userSignedIn: $userSignedIn)
@@ -70,11 +77,13 @@ struct ContentView: View {
                 .accentColor(Color("ButtonColor"))
                 .onAppear {
                     self.currentUser.fetchUserDataFromDatabase()
-                    self.selection = 2
+                    self.tabSelection = 2
                 }
-                .fullScreenCover(isPresented: $currentUser.forcePayment, content: { PaymentSheetView(currentUser: self.currentUser, paymentService: self.paymentService) })
-                .sheet(isPresented: $currentUser.showPaymentSheet, content: { PaymentSheetView(currentUser: self.currentUser, paymentService: self.paymentService) })
+                EmptyView()
+                    .sheet(isPresented: $currentUser.showPaymentSheet, content: { PaymentSheetView(currentUser: currentUser, tabSelection: self.$tabSelection) })
+                EmptyView()
                 .sheet(isPresented: $currentUser.showNewPhotoRollSheet, onDismiss: {currentUser.endPromotion() } ,content: {NewPhotoRollView(currentUser: self.currentUser)})
+                EmptyView()
                 .sheet(isPresented: $showVerifyEmailSheet ,content: {VerifyEmailView(currentUser: self.currentUser)})
             }
             else {

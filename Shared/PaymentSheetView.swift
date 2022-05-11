@@ -9,7 +9,8 @@ import SwiftUI
 
 struct PaymentSheetView: View {
     @ObservedObject var currentUser: User
-    @ObservedObject var paymentService: PaymentService
+//    @ObservedObject var paymentService: PaymentService
+    @Binding var tabSelection: Int
 
     var body: some View {
         NavigationView {
@@ -25,7 +26,7 @@ struct PaymentSheetView: View {
                     .padding()
                 Spacer()
                 
-                NavigationLink(destination: PaymentMethodView(currentUser: self.currentUser, paymentService: self.paymentService).navigationBarBackButtonHidden(true)) {
+                Button(action: {tabSelection = 3}) {
                     Text("Add payment method")
                         .fontWeight(.bold)
                         .font(.title)
@@ -42,8 +43,8 @@ struct PaymentSheetView: View {
     }
 }
 
-struct PaymentSheetView_Previews: PreviewProvider {
-    static var previews: some View {
-        PaymentSheetView(currentUser: User(), paymentService: PaymentService())
-    }
-}
+//struct PaymentSheetView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PaymentSheetView(currentUser: User(), paymentService: PaymentService())
+//    }
+//}

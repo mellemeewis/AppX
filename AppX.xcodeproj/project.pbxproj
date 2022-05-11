@@ -28,6 +28,15 @@
 		038C69CE26F1F1590051DE59 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C69CD26F1F1590051DE59 /* WelcomeView.swift */; };
 		038C69D026F20D020051DE59 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C69CF26F20D020051DE59 /* AccountView.swift */; };
 		038C69E226F4B1290051DE59 /* CameraService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038C69E126F4B1290051DE59 /* CameraService.swift */; };
+		03A4FCF82823C56C004BAD30 /* CameraView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A4FCF72823C56C004BAD30 /* CameraView2.swift */; };
+		03A4FCFA2823C62D004BAD30 /* CameraError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A4FCF92823C62D004BAD30 /* CameraError.swift */; };
+		03A4FCFC2823C647004BAD30 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A4FCFB2823C647004BAD30 /* CameraManager.swift */; };
+		03A4FCFE2823C664004BAD30 /* FrameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A4FCFD2823C664004BAD30 /* FrameManager.swift */; };
+		03A4FD002823C68D004BAD30 /* CGImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A4FCFF2823C68D004BAD30 /* CGImage.swift */; };
+		03A4FD022823C6B6004BAD30 /* CameraViewModel2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A4FD012823C6B6004BAD30 /* CameraViewModel2.swift */; };
+		03A4FD042823C73C004BAD30 /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A4FD032823C73C004BAD30 /* ControlView.swift */; };
+		03A4FD062823C777004BAD30 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A4FD052823C777004BAD30 /* ErrorView.swift */; };
+		03A4FD082823C792004BAD30 /* FrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A4FD072823C792004BAD30 /* FrameView.swift */; };
 		03ADB50C270482B800B999B2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADB50B270482B800B999B2 /* User.swift */; };
 		03B5DD3A270200A0005C96F1 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B5DD39270200A0005C96F1 /* StorageManager.swift */; };
 		03BA61502739CD75006B2781 /* PaymentMethodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BA614F2739CD75006B2781 /* PaymentMethodView.swift */; };
@@ -84,6 +93,15 @@
 		038C69CD26F1F1590051DE59 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		038C69CF26F20D020051DE59 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		038C69E126F4B1290051DE59 /* CameraService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraService.swift; sourceTree = "<group>"; };
+		03A4FCF72823C56C004BAD30 /* CameraView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView2.swift; sourceTree = "<group>"; };
+		03A4FCF92823C62D004BAD30 /* CameraError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraError.swift; sourceTree = "<group>"; };
+		03A4FCFB2823C647004BAD30 /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
+		03A4FCFD2823C664004BAD30 /* FrameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameManager.swift; sourceTree = "<group>"; };
+		03A4FCFF2823C68D004BAD30 /* CGImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGImage.swift; sourceTree = "<group>"; };
+		03A4FD012823C6B6004BAD30 /* CameraViewModel2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel2.swift; sourceTree = "<group>"; };
+		03A4FD032823C73C004BAD30 /* ControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlView.swift; sourceTree = "<group>"; };
+		03A4FD052823C777004BAD30 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		03A4FD072823C792004BAD30 /* FrameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameView.swift; sourceTree = "<group>"; };
 		03ADB50B270482B800B999B2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		03B5DD39270200A0005C96F1 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		03BA614F2739CD75006B2781 /* PaymentMethodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodView.swift; sourceTree = "<group>"; };
@@ -160,6 +178,7 @@
 				03B5DD3727020043005C96F1 /* Authentication Environment */,
 				03F06E4726F4E4C400D7486A /* Structs */,
 				038C69E026F4B10C0051DE59 /* Camera Environment */,
+				03A4FCF62823C507004BAD30 /* Camera */,
 				0304548026EFF49C000E78F6 /* AppXApp.swift */,
 				038C69C226F0C34C0051DE59 /* ContentView.swift */,
 				035EDBD52710864B000C4DFC /* CameraRollView.swift */,
@@ -224,6 +243,7 @@
 			children = (
 				03560CB127319F9B00305527 /* UIColor.swift */,
 				03174DC427340BB000ABA99C /* View.swift */,
+				03A4FCFF2823C68D004BAD30 /* CGImage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -240,6 +260,21 @@
 				03F06E4526F4C11900D7486A /* ImageResizer.swift */,
 			);
 			path = "Camera Environment";
+			sourceTree = "<group>";
+		};
+		03A4FCF62823C507004BAD30 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				03A4FCF72823C56C004BAD30 /* CameraView2.swift */,
+				03A4FCF92823C62D004BAD30 /* CameraError.swift */,
+				03A4FCFB2823C647004BAD30 /* CameraManager.swift */,
+				03A4FCFD2823C664004BAD30 /* FrameManager.swift */,
+				03A4FD012823C6B6004BAD30 /* CameraViewModel2.swift */,
+				03A4FD032823C73C004BAD30 /* ControlView.swift */,
+				03A4FD052823C777004BAD30 /* ErrorView.swift */,
+				03A4FD072823C792004BAD30 /* FrameView.swift */,
+			);
+			path = Camera;
 			sourceTree = "<group>";
 		};
 		03B5DD3727020043005C96F1 /* Authentication Environment */ = {
@@ -260,10 +295,10 @@
 		03F06E4726F4E4C400D7486A /* Structs */ = {
 			isa = PBXGroup;
 			children = (
+				03BA616727469671006B2781 /* Order.swift */,
 				03F06E4826F4E4DF00D7486A /* AlertError.swift */,
 				038300B7270730BB00D1E08F /* TextAlert.swift */,
 				03BA615C2743D168006B2781 /* LargeTextFieldStyle.swift */,
-				03BA616727469671006B2781 /* Order.swift */,
 			);
 			path = Structs;
 			sourceTree = "<group>";
@@ -433,9 +468,13 @@
 				030454A926EFF49E000E78F6 /* AppXApp.swift in Sources */,
 				038300B8270730BB00D1E08F /* TextAlert.swift in Sources */,
 				03174DC72737EB9200ABA99C /* PaymentService.swift in Sources */,
+				03A4FD002823C68D004BAD30 /* CGImage.swift in Sources */,
 				03C3F30E26F4B80B00BB9994 /* CameraView.swift in Sources */,
+				03A4FD022823C6B6004BAD30 /* CameraViewModel2.swift in Sources */,
+				03A4FD082823C792004BAD30 /* FrameView.swift in Sources */,
 				03B5DD3A270200A0005C96F1 /* StorageManager.swift in Sources */,
 				03BA616C2746AC4B006B2781 /* WelcomeToAppx2View.swift in Sources */,
+				03A4FCFC2823C647004BAD30 /* CameraManager.swift in Sources */,
 				03BA6152273BD631006B2781 /* OrdersView.swift in Sources */,
 				038300C9270DF73700D1E08F /* AddressViewAuthenticationEnvironment.swift in Sources */,
 				03BA616827469672006B2781 /* Order.swift in Sources */,
@@ -443,6 +482,7 @@
 				03C3F30C26F4B7B500BB9994 /* CameraPreview.swift in Sources */,
 				035EDBD62710864B000C4DFC /* CameraRollView.swift in Sources */,
 				03BA61502739CD75006B2781 /* PaymentMethodView.swift in Sources */,
+				03A4FCFE2823C664004BAD30 /* FrameManager.swift in Sources */,
 				038C69C326F0C34C0051DE59 /* ContentView.swift in Sources */,
 				03BA616627454E63006B2781 /* NewPhotoRollView.swift in Sources */,
 				03560CB227319F9B00305527 /* UIColor.swift in Sources */,
@@ -454,7 +494,9 @@
 				038C69E226F4B1290051DE59 /* CameraService.swift in Sources */,
 				03F06E4926F4E4DF00D7486A /* AlertError.swift in Sources */,
 				038300BF27074FE700D1E08F /* SignUpView.swift in Sources */,
+				03A4FD062823C777004BAD30 /* ErrorView.swift in Sources */,
 				03BA616E2746ACB3006B2781 /* WelcomeToAppx3View.swift in Sources */,
+				03A4FCFA2823C62D004BAD30 /* CameraError.swift in Sources */,
 				03C3F30826F4B6D300BB9994 /* PhotoCaptureProcessor.swift in Sources */,
 				03C8D849272858F30075EF41 /* CardView.swift in Sources */,
 				038300C1270C6CCF00D1E08F /* AddressViewAccountEnvironment.swift in Sources */,
@@ -462,6 +504,8 @@
 				03174DC527340BB000ABA99C /* View.swift in Sources */,
 				03BA615F2743E29F006B2781 /* WelcomeToAppxView.swift in Sources */,
 				038300C4270C77A500D1E08F /* LocationService.swift in Sources */,
+				03A4FCF82823C56C004BAD30 /* CameraView2.swift in Sources */,
+				03A4FD042823C73C004BAD30 /* ControlView.swift in Sources */,
 				03C3F30A26F4B78700BB9994 /* CameraViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

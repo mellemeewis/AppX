@@ -20,3 +20,20 @@ struct AppXApp: App {
         }
     }
 }
+
+
+//import SwiftUI
+//import URLImage
+//import URLImageStore
+//
+//@main
+//struct MyApp: App {
+//    var body: some Scene {
+//        let urlImageService = URLImageService(fileStore: nil, inMemoryStore: URLImageInMemoryStore())
+//
+//        return WindowGroup {
+//            ContentView()
+//                .environment(\.urlImageService, urlImageService)
+//        }
+//    }
+//}

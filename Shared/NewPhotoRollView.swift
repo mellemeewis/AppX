@@ -31,7 +31,7 @@ struct NewPhotoRollView: View {
                             .fixedSize(horizontal: false, vertical: true)
                             .padding()
                     } else {
-                        Text("Thank you for using AppX, we are happy to have you on board and can't wait to take your memories offline! \n\nYour current photoroll is full and we'll be sending your photographs as soon as possible. The photos in this photoRoll were provided by \(currentUser.promotionCompany ).\n\nWe opened a new photoroll for you in which you can save your new memories! No worries, if you don't complete this new photoroll you won't be charged for anything.")
+                        Text("Thank you for using AppX, we are happy to have you on board and can't wait to take your memories offline! \n\nYour current photoroll is full and we'll be sending your photographs as soon as possible. The photos in this photoRoll were provided by \(currentUser.promotionCompany ).\n\nWe opened a new photoroll for you in which you can save your new memories! No worries, if you don't complete this new photoroll you won't be charged for it.")
                             .font(.headline)
                             .fontWeight(.bold)
                             .foregroundColor(Color.black)
